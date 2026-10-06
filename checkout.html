@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | AUTO HUB – Spare Parts &amp; Accessories</title>
+  <meta name="description" content="Secure and encrypted checkout for automotive spare parts in Sri Lanka. Credit card, Koko/Mintpay installments and Cash on Delivery.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="images/logo/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="container">
+      <div class="top-header-left">
+        <a href="tel:0707275599"><i class="fas fa-phone-alt"></i> 070 727 5599</a>
+        <span class="top-header-divider"></span>
+        <a href="mailto:nithilarodrigo@gmail.com"><i class="fas fa-envelope"></i> nithilarodrigo@gmail.com</a>
+      </div>
+      <div class="top-header-right">
+        <a href="track-order.html"><i class="fas fa-truck"></i> Track Order</a>
+        <span class="top-header-divider"></span>
+        <a href="contact.html"><i class="fas fa-headset"></i> Help Center</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navbar -->
+  <nav class="main-navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fas fa-cog"></i></div>
+          <div class="brand-text">
+            <span class="brand-title">AUTO <span>HUB</span></span>
+            <span class="brand-subtitle">SPARE PARTS &amp; ACCESSORIES</span>
+          </div>
+        </a>
+
+        <div style="font-size: 0.9rem; color: #16a34a; font-weight: 600; display: flex; align-items: center; gap: 0.4rem;">
+          <i class="fas fa-lock"></i> 256-Bit SSL Encrypted Secure Checkout
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Checkout Main -->
+  <main class="checkout-page-wrap">
+    <div class="container">
+      
+      <div class="section-title-wrap" style="text-align: left; margin-bottom: 2rem;">
+        <h1 class="section-title" style="font-size: 2rem;">CHECKOUT</h1>
+        <p class="section-subtitle">Please enter your shipping address and choose a payment method</p>
+      </div>
+
+      <div class="cart-layout" style="grid-template-columns: 1.25fr 0.75fr;">
+        
+        <!-- Left: Address & Payment Form -->
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          
+          <!-- Shipping Address Box -->
+          <div style="background: white; border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-sm);">
+            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.6rem;">
+              <i class="fas fa-shipping-fast text-red"></i> 1. Delivery &amp; Contact Information
+            </h2>
+
+            <form id="checkout-form">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                  <label class="form-label">Full Name *</label>
+                  <input type="text" class="form-control" id="cust-name" required placeholder="e.g. Kasun Jayasuriya" value="Kasun Jayasuriya">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Phone Number *</label>
+                  <input type="tel" class="form-control" id="cust-phone" required placeholder="070 727 5599" value="070 727 5599">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input type="email" class="form-control" id="cust-email" required placeholder="kasun@example.com" value="kasun@autohub.lk">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Street Address *</label>
+                <input type="text" class="form-control" id="cust-address" required placeholder="House/Flat No, Street Name" value="No. 45/2, Flower Road">
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                  <label class="form-label">City *</label>
+                  <input type="text" class="form-control" id="cust-city" required placeholder="e.g. Colombo 07" value="Colombo 07">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Postal Code *</label>
+                  <input type="text" class="form-control" id="cust-postal" required placeholder="e.g. 00700" value="00700">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">District / Province *</label>
+                  <select class="form-control" id="cust-district" required>
+                    <option value="Western Province (Colombo, Gampaha, Kalutara)">Western Province (Rs. 350)</option>
+                    <option value="Central Province (Kandy, Matale, Nuwara Eliya)">Central Province (Rs. 450)</option>
+                    <option value="Southern Province (Galle, Matara, Hambantota)">Southern Province (Rs. 450)</option>
+                    <option value="North Western Province (Kurunegala, Puttalam)">North Western Province (Rs. 450)</option>
+                    <option value="Sabaragamuwa Province (Ratnapura, Kegalle)">Sabaragamuwa Province (Rs. 450)</option>
+                    <option value="Eastern Province (Trincomalee, Batticaloa, Ampara)">Eastern Province (Rs. 500)</option>
+                    <option value="Northern Province (Jaffna, Kilinochchi, Vavuniya)">Northern Province (Rs. 500)</option>
+                    <option value="North Central Province (Anuradhapura, Polonnaruwa)">North Central Province (Rs. 500)</option>
+                    <option value="Uva Province (Badulla, Monaragala)">Uva Province (Rs. 500)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Delivery Instructions (Optional)</label>
+                <textarea class="form-control" rows="2" placeholder="e.g. Please call before arriving or leave with security."></textarea>
+              </div>
+            </form>
+          </div>
+
+          <!-- Payment Options Box -->
+          <div style="background: white; border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-sm);">
+            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.6rem;">
+              <i class="fas fa-credit-card text-red"></i> 2. Select Payment Method
+            </h2>
+
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              
+              <!-- Payment 1: Cash on Delivery -->
+              <label style="display: flex; align-items: center; gap: 1rem; padding: 1.1rem; border: 1.5px solid var(--primary-red); background: #fff1f2; border-radius: 12px; cursor: pointer;">
+                <input type="radio" name="payment_method" value="cod" checked style="accent-color: var(--primary-red); width: 18px; height: 18px;">
+                <div>
+                  <div style="font-weight: 700; color: var(--text-main); font-size: 0.98rem;"><i class="fas fa-money-bill-wave text-red"></i> Cash on Delivery (COD)</div>
+                  <div style="font-size: 0.82rem; color: #64748b; margin-top: 0.2rem;">Pay in cash to courier driver upon receiving your spare parts package</div>
+                </div>
+              </label>
+
+              <!-- Payment 2: Online Card Payment (PayHere) -->
+              <label style="display: flex; align-items: center; gap: 1rem; padding: 1.1rem; border: 1px solid var(--border-color); border-radius: 12px; cursor: pointer;">
+                <input type="radio" name="payment_method" value="card" style="accent-color: var(--primary-red); width: 18px; height: 18px;">
+                <div>
+                  <div style="font-weight: 700; color: var(--text-main); font-size: 0.98rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-credit-card text-red"></i> Online Card Payment (Visa / Mastercard)
+                    <span style="background: #e0f2fe; color: #0284c7; font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 12px; font-weight: 700;">SECURE GATEWAY</span>
+                  </div>
+                  <div style="font-size: 0.82rem; color: #64748b; margin-top: 0.2rem;">Instant online card payment via 256-bit encrypted PayHere checkout (Sandbox &amp; Live)</div>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Order Items & Total Summary -->
+        <div>
+          <div class="order-summary-card">
+            <h2 class="summary-title">Your Order (<span id="chk-item-count">0</span> items)</h2>
+
+            <div id="checkout-items-list" style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; max-height: 280px; overflow-y: auto;">
+              <!-- Populated via JS -->
+            </div>
+
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="chk-subtotal" class="fw-bold">Rs. 0</span>
+            </div>
+
+            <div class="summary-row" id="chk-discount-row" style="display: none; color: var(--primary-red);">
+              <span>Discount</span>
+              <span id="chk-discount" class="fw-bold">- Rs. 0</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Delivery Fee</span>
+              <span id="chk-shipping" class="fw-bold">Rs. 350</span>
+            </div>
+
+            <div class="summary-row total">
+              <span>Grand Total</span>
+              <span class="total-amount" id="chk-grand-total">Rs. 0</span>
+            </div>
+
+            <div style="margin-top: 1.75rem;">
+              <button class="btn btn-primary btn-block btn-lg" id="btn-place-order">
+                <i class="fas fa-check-circle"></i> PLACE ORDER NOW
+              </button>
+            </div>
+
+            <div style="margin-top: 1rem; font-size: 0.8rem; color: #64748b; text-align: center;">
+              By placing your order, you agree to AUTO HUB's Terms &amp; Conditions and 14-Day Return Policy.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Order Success Modal Overlay -->
+  <div class="modal-overlay" id="order-success-modal">
+    <div class="modal-card" style="max-width: 540px; text-align: center; padding: 3rem 2rem;">
+      <div style="width: 72px; height: 72px; border-radius: 9999px; background: #f0fdf4; color: #16a34a; font-size: 2.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2 style="font-size: 1.85rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-main);">Order Placed Successfully!</h2>
+      <p style="color: #64748b; margin-bottom: 1.5rem; font-size: 0.95rem;">
+        Thank you for choosing AUTO HUB. Your order has been registered and is being prepared for dispatch.
+      </p>
+
+      <div style="background: #f8fafc; border: 1.5px dashed var(--primary-red); border-radius: 12px; padding: 1.25rem; margin-bottom: 2rem;">
+        <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.25rem;">YOUR ORDER TRACKING ID</div>
+        <div style="font-size: 1.6rem; font-weight: 900; color: var(--primary-red); letter-spacing: 1px;" id="success-order-id">AH-89421</div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; justify-content: center;">
+        <a href="track-order.html" class="btn btn-primary" id="success-track-btn">
+          <i class="fas fa-truck"></i> Track Order Status
+        </a>
+        <a href="index.html" class="btn btn-outline-dark">
+          Return to Home
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" style="margin-top: 4rem;">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 AUTO HUB – Sri Lanka. All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- Checkout Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cart = Store.getCart();
+      if (!cart || cart.length === 0) {
+        window.location.href = 'cart.html';
+        return;
+      }
+
+      // Render checkout items preview
+      const itemsList = document.getElementById('checkout-items-list');
+      document.getElementById('chk-item-count').textContent = Store.getCartCount();
+
+      itemsList.innerHTML = cart.map(item => `
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #f1f5f9;">
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <img src="${item.image}" alt="${escapeHtml(item.name)}" style="width: 44px; height: 44px; object-fit: contain; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; padding: 2px;">
+            <div>
+              <div style="font-size: 0.85rem; font-weight: 700; line-height: 1.2;">${escapeHtml(item.name)}</div>
+              <div style="font-size: 0.75rem; color: #64748b;">Qty: ${item.quantity} &times; ${Store.formatPrice(item.price)}</div>
+            </div>
+          </div>
+          <span style="font-weight: 700; font-size: 0.9rem; color: var(--text-main);">${Store.formatPrice(item.price * item.quantity)}</span>
+        </div>
+      `).join('');
+
+      // Calculations
+      const subtotal = Store.getCartSubtotal();
+      document.getElementById('chk-subtotal').textContent = Store.formatPrice(subtotal);
+
+      let shippingFee = 350;
+      try {
+        const savedShip = localStorage.getItem('autohub_selected_shipping');
+        if (savedShip) {
+          shippingFee = JSON.parse(savedShip).fee;
+        }
+      } catch (e) {}
+
+      const coupon = Store.getCoupon();
+      let discount = 0;
+      if (coupon) {
+        if (coupon.discountPercent) {
+          discount = (subtotal * coupon.discountPercent) / 100;
+          document.getElementById('chk-discount-row').style.display = 'flex';
+          document.getElementById('chk-discount').textContent = `- ${Store.formatPrice(discount)}`;
+        } else if (coupon.freeShipping) {
+          shippingFee = 0;
+        }
+      }
+
+      document.getElementById('chk-shipping').textContent = shippingFee === 0 ? 'FREE' : Store.formatPrice(shippingFee);
+      const grandTotal = Math.max(0, subtotal - discount + shippingFee);
+      document.getElementById('chk-grand-total').textContent = Store.formatPrice(grandTotal);
+
+      // Place Order Button
+      document.getElementById('btn-place-order').addEventListener('click', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('cust-name').value.trim();
+        const phone = document.getElementById('cust-phone').value.trim();
+        const address = document.getElementById('cust-address').value.trim();
+
+        if (!name || !phone || !address) {
+          Store.showToast('Please fill in your name, phone number, and street address.', 'error');
+          return;
+        }
+
+        // Generate random Sri Lankan Order ID
+        const orderId = 'AH-' + Math.floor(10000 + Math.random() * 90000);
+        document.getElementById('success-order-id').textContent = orderId;
+        document.getElementById('success-track-btn').href = `track-order.html?orderId=${orderId}`;
+
+        // Save order info to localStorage for tracking
+        const orderData = {
+          orderId,
+          name,
+          phone,
+          address,
+          city: document.getElementById('cust-city').value,
+          items: cart,
+          total: grandTotal,
+          date: new Date().toLocaleDateString('en-LK', { year: 'numeric', month: 'short', day: 'numeric' }),
+          status: 'Processing'
+        };
+        localStorage.setItem(`order_${orderId}`, JSON.stringify(orderData));
+        localStorage.setItem('latest_order_id', orderId);
+
+        // Clear Cart
+        Store.clearCart();
+        Store.removeCoupon();
+
+        // Show Success Modal
+        document.getElementById('order-success-modal').classList.add('show');
+      });
+    });
+  </script>
+</body>
+</html>

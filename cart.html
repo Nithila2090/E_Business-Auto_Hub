@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart | AUTO HUB – Spare Parts &amp; Accessories</title>
+  <meta name="description" content="Review your shopping cart, calculate Sri Lankan islandwide delivery, apply promotional discount coupons, and proceed to secure checkout at AUTO HUB.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="images/logo/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="container">
+      <div class="top-header-left">
+        <a href="tel:0707275599"><i class="fas fa-phone-alt"></i> 070 727 5599</a>
+        <span class="top-header-divider"></span>
+        <a href="mailto:nithilarodrigo@gmail.com"><i class="fas fa-envelope"></i> nithilarodrigo@gmail.com</a>
+      </div>
+      <div class="top-header-right">
+        <a href="track-order.html"><i class="fas fa-truck"></i> Track Order</a>
+        <span class="top-header-divider"></span>
+        <a href="contact.html"><i class="fas fa-headset"></i> Help Center</a>
+        <span class="top-header-divider"></span>
+        <a href="login.html"><i class="fas fa-user"></i> Login / Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navbar -->
+  <nav class="main-navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fas fa-cog"></i></div>
+          <div class="brand-text">
+            <span class="brand-title">AUTO <span>HUB</span></span>
+            <span class="brand-subtitle">SPARE PARTS &amp; ACCESSORIES</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item">
+            <a href="shop.html" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu">
+              <a href="category.html?id=body-parts" class="dropdown-item"><i class="fas fa-car-side"></i> Body Parts</a>
+              <a href="category.html?id=brake-system" class="dropdown-item"><i class="fas fa-compact-disc"></i> Brake System</a>
+              <a href="category.html?id=cooling-system" class="dropdown-item"><i class="fas fa-fan"></i> Cooling System</a>
+              <a href="category.html?id=electrical" class="dropdown-item"><i class="fas fa-bolt"></i> Electrical</a>
+              <a href="category.html?id=engine-parts" class="dropdown-item"><i class="fas fa-cogs"></i> Engine Parts</a>
+              <a href="category.html?id=filters" class="dropdown-item"><i class="fas fa-filter"></i> Filters</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="shop.html" class="nav-link">Vehicles</a></li>
+          <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <div class="search-wrapper">
+            <form class="search-form">
+              <input type="text" class="search-input" placeholder="Search parts, categories..." autocomplete="off">
+              <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+
+          <a href="wishlist.html" class="nav-icon-link" title="My Wishlist">
+            <i class="far fa-heart"></i>
+            <span class="badge-count wishlist-badge-count" style="display: none;">0</span>
+          </a>
+
+          <a href="cart.html" class="nav-icon-link" title="Shopping Cart" style="border-color: var(--primary-red); color: var(--primary-red);">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge-count cart-badge-count" style="display: none;">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       Cart Page Main Section
+       ========================================================================= -->
+  <main class="cart-page-wrap">
+    <div class="container">
+      
+      <div class="section-title-wrap" style="text-align: left; margin-bottom: 2rem;">
+        <h1 class="section-title" style="font-size: 2.2rem;">SHOPPING CART</h1>
+        <p class="section-subtitle">Manage your selected spare parts before checkout</p>
+      </div>
+
+      <!-- Empty Cart State -->
+      <div id="cart-empty-container" style="display: none; text-align: center; padding: 5rem 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <i class="fas fa-shopping-cart text-muted" style="font-size: 4rem; margin-bottom: 1.5rem; color: #cbd5e1;"></i>
+        <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem;">Your Cart is Empty</h2>
+        <p style="color: #64748b; margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto;">
+          You haven't added any automotive spare parts to your shopping cart yet. Select your vehicle make and model to find compatible parts.
+        </p>
+        <a href="shop.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-search"></i> Browse Spare Parts Catalog
+        </a>
+      </div>
+
+      <!-- Cart Content Layout -->
+      <div class="cart-layout" id="cart-content-layout">
+        
+        <!-- Left: Cart Items Table -->
+        <div class="cart-items-card">
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th style="width: 45%;">Product</th>
+                <th style="width: 18%;">Price</th>
+                <th style="width: 20%;">Quantity</th>
+                <th style="width: 17%; text-align: right;">Total</th>
+              </tr>
+            </thead>
+            <tbody id="cart-tbody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color);">
+            <a href="shop.html" class="btn btn-outline-dark btn-sm">
+              <i class="fas fa-arrow-left"></i> Continue Shopping
+            </a>
+            <button class="btn btn-outline-red btn-sm" id="btn-clear-cart">
+              <i class="fas fa-trash-alt"></i> Clear Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Summary & Checkout Details -->
+        <div class="order-summary-card">
+          <h2 class="summary-title">Order Summary</h2>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="summary-subtotal" class="fw-bold">Rs. 0</span>
+          </div>
+
+          <!-- Coupon Code Input -->
+          <div class="coupon-form">
+            <input type="text" class="coupon-input" id="coupon-code-input" placeholder="Coupon Code (e.g. AUTOHUB10)">
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-apply-coupon">Apply</button>
+          </div>
+          <div id="coupon-active-badge" style="display: none; margin-bottom: 1rem; font-size: 0.82rem; color: #16a34a; background: #f0fdf4; padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid #bbf7d0; justify-content: space-between; align-items: center;">
+            <span id="coupon-desc-text">10% Off Applied</span>
+            <button id="btn-remove-coupon" style="background: none; border: none; color: #ef4444; cursor: pointer; font-weight: bold;">&times;</button>
+          </div>
+
+          <div class="summary-row" id="discount-row" style="display: none; color: var(--primary-red);">
+            <span>Coupon Discount</span>
+            <span id="summary-discount" class="fw-bold">- Rs. 0</span>
+          </div>
+
+          <!-- Delivery Province Selector -->
+          <div style="margin: 1.25rem 0; padding-top: 1rem; border-top: 1px solid var(--border-color-light);">
+            <label class="form-label" style="font-size: 0.85rem;"><i class="fas fa-map-marker-alt text-red"></i> Shipping Destination</label>
+            <select class="form-control" id="province-select" style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+              <option value="Western Province (Colombo, Gampaha, Kalutara)">Western Province (Rs. 350)</option>
+              <option value="Central Province (Kandy, Matale, Nuwara Eliya)">Central Province (Rs. 450)</option>
+              <option value="Southern Province (Galle, Matara, Hambantota)">Southern Province (Rs. 450)</option>
+              <option value="North Western Province (Kurunegala, Puttalam)">North Western Province (Rs. 450)</option>
+              <option value="Sabaragamuwa Province (Ratnapura, Kegalle)">Sabaragamuwa Province (Rs. 450)</option>
+              <option value="Eastern Province (Trincomalee, Batticaloa, Ampara)">Eastern Province (Rs. 550)</option>
+              <option value="Northern Province (Jaffna, Kilinochchi, Vavuniya)">Northern Province (Rs. 600)</option>
+              <option value="North Central Province (Anuradhapura, Polonnaruwa)">North Central Province (Rs. 500)</option>
+              <option value="Uva Province (Badulla, Monaragala)">Uva Province (Rs. 500)</option>
+            </select>
+          </div>
+
+          <div class="summary-row">
+            <span>Estimated Shipping</span>
+            <span id="summary-shipping" class="fw-bold">Rs. 350</span>
+          </div>
+
+          <div class="summary-row total">
+            <span>Estimated Total</span>
+            <span class="total-amount" id="summary-grand-total">Rs. 0</span>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <a href="checkout.html" class="btn btn-primary btn-block btn-lg" id="btn-proceed-checkout">
+              <i class="fas fa-lock"></i> Proceed to Checkout
+            </a>
+          </div>
+
+          <!-- Sri Lanka Guarantee notes -->
+          <div style="margin-top: 1.25rem; font-size: 0.78rem; color: #64748b; text-align: center; line-height: 1.4;">
+            <i class="fas fa-shield-alt text-red"></i> 100% Genuine Sri Lankan Warranty Included
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="brand-icon"><i class="fas fa-cog"></i></div>
+            <div class="brand-text">
+              <span class="brand-title" style="color: white;">AUTO <span>HUB</span></span>
+              <span class="brand-subtitle" style="color: #94a3b8;">SPARE PARTS &amp; ACCESSORIES</span>
+            </div>
+          </a>
+          <p class="footer-about-text">
+            Sri Lanka's leading automotive spare parts e-commerce destination with 100% genuine parts and guaranteed fitment.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="shop.html"><i class="fas fa-chevron-right"></i> Shop Parts</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Customer Service</h3>
+          <div class="footer-links">
+            <a href="track-order.html"><i class="fas fa-chevron-right"></i> Track Order</a>
+            <a href="wishlist.html"><i class="fas fa-chevron-right"></i> Wishlist</a>
+            <a href="cart.html"><i class="fas fa-chevron-right"></i> Cart</a>
+            <a href="contact.html#faq"><i class="fas fa-chevron-right"></i> FAQs</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:0707275599" style="color: inherit;">070 727 5599</a></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope"></i> <a href="mailto:nithilarodrigo@gmail.com" style="color: inherit;">nithilarodrigo@gmail.com</a></div>
+            <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> No. 142, Galle Road, Colombo 03</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div>&copy; 2026 AUTO HUB – Sri Lanka. All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon" style="width: 36px; height: 36px;"><i class="fas fa-cog"></i></div>
+        <div class="brand-text"><span class="brand-title" style="color: white; font-size: 1.25rem;">AUTO <span>HUB</span></span></div>
+      </a>
+      <button class="drawer-close-btn" id="drawer-close-btn">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-links">
+        <a href="index.html" class="drawer-link">Home <i class="fas fa-chevron-right"></i></a>
+        <a href="shop.html" class="drawer-link">Shop All Parts <i class="fas fa-chevron-right"></i></a>
+        <a href="wishlist.html" class="drawer-link">Wishlist <span class="badge badge-discount wishlist-badge-count" style="display:none;">0</span></a>
+        <a href="cart.html" class="drawer-link active">Cart <span class="badge badge-discount cart-badge-count" style="display:none;">0</span></a>
+        <a href="track-order.html" class="drawer-link">Track Order <i class="fas fa-chevron-right"></i></a>
+        <a href="about.html" class="drawer-link">About Us <i class="fas fa-chevron-right"></i></a>
+        <a href="contact.html" class="drawer-link">Contact Us <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- Cart Page Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCartPage();
+
+      window.addEventListener('autohub:cartUpdated', () => {
+        renderCartPage();
+      });
+    });
+
+    function renderCartPage() {
+      const cart = Store.getCart();
+      const emptyState = document.getElementById('cart-empty-container');
+      const contentLayout = document.getElementById('cart-content-layout');
+      const tbody = document.getElementById('cart-tbody');
+
+      if (!cart || cart.length === 0) {
+        emptyState.style.display = 'block';
+        contentLayout.style.display = 'none';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      contentLayout.style.display = 'grid';
+
+      tbody.innerHTML = cart.map(item => `
+        <tr class="cart-item-row" data-id="${item.id}">
+          <td>
+            <div class="cart-item-info">
+              <img src="${item.image}" alt="${escapeHtml(item.name)}" class="cart-item-img">
+              <div>
+                <a href="product-details.html?id=${item.id}" class="cart-item-name">${escapeHtml(item.name)}</a>
+                <div class="cart-item-compat">Fits: ${item.make || ''} ${item.model || ''}</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="cart-item-price">${Store.formatPrice(item.price)}</span>
+          </td>
+          <td>
+            <div class="quantity-stepper" style="width: max-content;">
+              <button class="qty-btn btn-cart-minus" data-id="${item.id}">-</button>
+              <input type="number" class="qty-input cart-qty-val" value="${item.quantity}" readonly>
+              <button class="qty-btn btn-cart-plus" data-id="${item.id}">+</button>
+            </div>
+          </td>
+          <td style="text-align: right;">
+            <div style="font-weight: 800; color: var(--text-main); font-size: 1rem; margin-bottom: 0.25rem;">
+              ${Store.formatPrice(item.price * item.quantity)}
+            </div>
+            <button class="btn-remove-item btn-cart-remove" data-id="${item.id}" title="Remove item">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+
+      // Quantity adjustments
+      tbody.querySelectorAll('.btn-cart-minus').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const item = cart.find(i => i.id === Number(id));
+          if (item) {
+            Store.updateCartQuantity(id, item.quantity - 1);
+          }
+        });
+      });
+
+      tbody.querySelectorAll('.btn-cart-plus').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const item = cart.find(i => i.id === Number(id));
+          if (item) {
+            Store.updateCartQuantity(id, item.quantity + 1);
+          }
+        });
+      });
+
+      tbody.querySelectorAll('.btn-cart-remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          Store.removeFromCart(id);
+        });
+      });
+
+      // Clear cart button
+      document.getElementById('btn-clear-cart').addEventListener('click', () => {
+        if (confirm('Are you sure you want to clear your cart?')) {
+          Store.clearCart();
+        }
+      });
+
+      // Calculate Totals
+      calculateSummary();
+    }
+
+    function calculateSummary() {
+      const subtotal = Store.getCartSubtotal();
+      document.getElementById('summary-subtotal').textContent = Store.formatPrice(subtotal);
+
+      // Shipping calculation
+      const provinceSelect = document.getElementById('province-select');
+      const selectedProvince = provinceSelect.value;
+      const rateInfo = AUTO_HUB_DATA.shippingRates[selectedProvince] || { standard: 350 };
+      let shippingFee = rateInfo.standard;
+
+      // Coupon calculation
+      const coupon = Store.getCoupon();
+      const couponBadge = document.getElementById('coupon-active-badge');
+      const discountRow = document.getElementById('discount-row');
+      const discountText = document.getElementById('summary-discount');
+      let discountAmount = 0;
+
+      if (coupon) {
+        couponBadge.style.display = 'flex';
+        document.getElementById('coupon-desc-text').textContent = `Applied: ${coupon.code} (${coupon.description})`;
+        
+        if (coupon.discountPercent) {
+          discountAmount = (subtotal * coupon.discountPercent) / 100;
+          discountRow.style.display = 'flex';
+          discountText.textContent = `- ${Store.formatPrice(discountAmount)}`;
+        } else if (coupon.freeShipping) {
+          shippingFee = 0;
+          discountRow.style.display = 'none';
+        }
+      } else {
+        couponBadge.style.display = 'none';
+        discountRow.style.display = 'none';
+      }
+
+      document.getElementById('summary-shipping').textContent = shippingFee === 0 ? 'FREE' : Store.formatPrice(shippingFee);
+
+      const grandTotal = Math.max(0, subtotal - discountAmount + shippingFee);
+      document.getElementById('summary-grand-total').textContent = Store.formatPrice(grandTotal);
+
+      // Save delivery selection to localStorage for checkout
+      localStorage.setItem('autohub_selected_shipping', JSON.stringify({ province: selectedProvince, fee: shippingFee }));
+    }
+
+    // Coupon handlers
+    document.getElementById('btn-apply-coupon').addEventListener('click', () => {
+      const code = document.getElementById('coupon-code-input').value;
+      if (code) {
+        Store.applyCoupon(code);
+        calculateSummary();
+      }
+    });
+
+    document.getElementById('btn-remove-coupon').addEventListener('click', () => {
+      Store.removeCoupon();
+      calculateSummary();
+    });
+
+    document.getElementById('province-select').addEventListener('change', () => {
+      calculateSummary();
+    });
+  </script>
+</body>
+</html>
