@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Account | AUTO HUB – Spare Parts &amp; Accessories</title>
+  <meta name="description" content="Create an account at AUTO HUB to enjoy fast checkout, special Sri Lankan automotive spare parts discounts and order tracking.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="images/logo/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Main Navbar -->
+  <nav class="main-navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fas fa-cog"></i></div>
+          <div class="brand-text">
+            <span class="brand-title">AUTO <span>HUB</span></span>
+            <span class="brand-subtitle">SPARE PARTS &amp; ACCESSORIES</span>
+          </div>
+        </a>
+
+        <a href="index.html" class="btn btn-outline-dark btn-sm">
+          <i class="fas fa-arrow-left"></i> Back to Store
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Register Form Main -->
+  <main class="auth-page-wrap">
+    <div class="auth-card" style="max-width: 520px;">
+      <div class="auth-header">
+        <div class="brand-icon" style="width: 52px; height: 52px; margin: 0 auto 1rem; font-size: 1.6rem;">
+          <i class="fas fa-user-plus"></i>
+        </div>
+        <h1 class="auth-title">Create Account</h1>
+        <p class="auth-subtitle">Join Sri Lanka's leading automotive spare parts network</p>
+      </div>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label class="form-label">Full Name *</label>
+          <div style="position: relative;">
+            <input type="text" class="form-control" id="reg-name" required placeholder="e.g. Kasun Jayasuriya" style="padding-left: 2.5rem;">
+            <i class="fas fa-user text-muted" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email Address *</label>
+          <div style="position: relative;">
+            <input type="email" class="form-control" id="reg-email" required placeholder="name@example.com" style="padding-left: 2.5rem;">
+            <i class="fas fa-envelope text-muted" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Mobile Number *</label>
+          <div style="position: relative;">
+            <input type="tel" class="form-control" id="reg-phone" required placeholder="070 727 5599" style="padding-left: 2.5rem;">
+            <i class="fas fa-phone-alt text-muted" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);"></i>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label">Password *</label>
+            <input type="password" class="form-control" id="reg-password" required placeholder="Min 8 characters">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm Password *</label>
+            <input type="password" class="form-control" id="reg-confirm-password" required placeholder="Re-enter password">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label class="filter-checkbox-label">
+            <input type="checkbox" id="terms-check" required checked>
+            <span>I agree to AUTO HUB's <a href="#" class="text-red">Terms &amp; Conditions</a> and <a href="#" class="text-red">Privacy Policy</a></span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-bottom: 1.5rem;">
+          <i class="fas fa-check-circle"></i> Create Account
+        </button>
+      </form>
+
+      <div style="text-align: center; font-size: 0.9rem; color: #64748b; padding-top: 1rem; border-top: 1px solid #f1f5f9;">
+        Already have an account? <a href="login.html" class="text-red fw-bold">Sign In</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/script.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('register-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('reg-name').value;
+        const pw = document.getElementById('reg-password').value;
+        const confirmPw = document.getElementById('reg-confirm-password').value;
+
+        if (pw !== confirmPw) {
+          Store.showToast('Passwords do not match. Please check again.', 'error');
+          return;
+        }
+
+        Store.showToast(`Account successfully created for <strong>${name}</strong>! Redirecting to login...`, 'success');
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>

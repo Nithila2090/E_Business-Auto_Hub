@@ -1,0 +1,17 @@
+# Sensitive configuration and environment files
+.env
+.env.local
+config/payhere.local.php
+
+# Local logs and temporary files
+logs/
+scratch/
+test_run_temp.php
+cookie.txt
+admin_cookie.txt
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | AUTO HUB – Spare Parts &amp; Accessories</title>
+  <meta name="description" content="Detailed automotive spare parts specifications, vehicle fitment compatibility, pricing, and genuine OEM warranties at AUTO HUB Sri Lanka.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="images/logo/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="container">
+      <div class="top-header-left">
+        <a href="tel:0707275599"><i class="fas fa-phone-alt"></i> 070 727 5599</a>
+        <span class="top-header-divider"></span>
+        <a href="mailto:nithilarodrigo@gmail.com"><i class="fas fa-envelope"></i> nithilarodrigo@gmail.com</a>
+      </div>
+      <div class="top-header-right">
+        <a href="track-order.html"><i class="fas fa-truck"></i> Track Order</a>
+        <span class="top-header-divider"></span>
+        <a href="contact.html"><i class="fas fa-headset"></i> Help Center</a>
+        <span class="top-header-divider"></span>
+        <a href="login.html"><i class="fas fa-user"></i> Login / Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navbar -->
+  <nav class="main-navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fas fa-cog"></i></div>
+          <div class="brand-text">
+            <span class="brand-title">AUTO <span>HUB</span></span>
+            <span class="brand-subtitle">SPARE PARTS &amp; ACCESSORIES</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item">
+            <a href="shop.html" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu">
+              <a href="category.html?id=body-parts" class="dropdown-item"><i class="fas fa-car-side"></i> Body Parts</a>
+              <a href="category.html?id=brake-system" class="dropdown-item"><i class="fas fa-compact-disc"></i> Brake System</a>
+              <a href="category.html?id=cooling-system" class="dropdown-item"><i class="fas fa-fan"></i> Cooling System</a>
+              <a href="category.html?id=electrical" class="dropdown-item"><i class="fas fa-bolt"></i> Electrical</a>
+              <a href="category.html?id=engine-parts" class="dropdown-item"><i class="fas fa-cogs"></i> Engine Parts</a>
+              <a href="category.html?id=filters" class="dropdown-item"><i class="fas fa-filter"></i> Filters</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="shop.html" class="nav-link">Vehicles</a></li>
+          <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <div class="search-wrapper">
+            <form class="search-form">
+              <input type="text" class="search-input" placeholder="Search parts, categories..." autocomplete="off">
+              <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+
+          <a href="wishlist.html" class="nav-icon-link" title="My Wishlist">
+            <i class="far fa-heart"></i>
+            <span class="badge-count wishlist-badge-count" style="display: none;">0</span>
+          </a>
+
+          <a href="cart.html" class="nav-icon-link" title="Shopping Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge-count cart-badge-count" style="display: none;">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       Product Details Section
+       ========================================================================= -->
+  <main class="product-details-wrap">
+    <div class="container">
+      
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumb-nav">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <a href="shop.html">Shop</a>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <span id="detail-category-crumb">Category</span>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <span id="detail-title-crumb" style="color: var(--text-main); font-weight: 600;">Product Title</span>
+      </nav>
+
+      <!-- Main Product Details Grid -->
+      <div class="product-detail-grid">
+        
+        <!-- Left: Image Gallery -->
+        <div class="product-gallery-col">
+          <div class="gallery-main-box">
+            <img src="" alt="Product Image" id="detail-main-img" class="gallery-main-img">
+          </div>
+          <div class="gallery-thumbnails" id="detail-thumbnails">
+            <!-- Thumbnails inserted dynamically -->
+          </div>
+        </div>
+
+        <!-- Right: Product Info & Purchase Controls -->
+        <div class="product-info-col">
+          <div class="product-meta-header">
+            <span class="badge badge-bestseller" id="detail-brand-badge">Brand</span>
+            <span class="badge badge-instock" id="detail-stock-badge"><i class="fas fa-check-circle"></i> In Stock</span>
+          </div>
+
+          <h1 class="product-detail-title" id="detail-title">Loading Product...</h1>
+          
+          <div class="product-sku-badge">
+            Part Number: <strong id="detail-part-no">OEM-0000</strong> &bull; SKU: <strong id="detail-sku">SKU-0000</strong>
+          </div>
+
+          <div class="product-rating" style="margin-bottom: 1rem;">
+            <div class="stars" id="detail-stars"></div>
+            <span class="rating-count" id="detail-rating-text">(4.9 out of 5 stars)</span>
+          </div>
+
+          <!-- Pricing Box -->
+          <div class="product-detail-price-box">
+            <span class="detail-current-price" id="detail-price">Rs. 0</span>
+            <span class="detail-old-price" id="detail-old-price"></span>
+            <span class="badge badge-discount" id="detail-discount-badge" style="font-size: 0.85rem; padding: 0.35rem 0.65rem;"></span>
+          </div>
+
+          <!-- Vehicle Compatibility Fitment Banner -->
+          <div class="fitment-checker-box">
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <div class="fitment-checker-text" id="detail-compat-heading">Guaranteed Fitment Verified</div>
+              <div style="font-size: 0.8rem; color: #15803d;" id="detail-compat-sub">Direct bolt-on replacement for selected models</div>
+            </div>
+          </div>
+
+          <!-- Short Description -->
+          <p style="font-size: 0.95rem; color: #475569; line-height: 1.6; margin-bottom: 1.5rem;" id="detail-short-desc">
+            Product summary overview.
+          </p>
+
+          <!-- Quantity Stepper & Buttons -->
+          <div class="product-actions-wrap">
+            <div class="quantity-stepper">
+              <button class="qty-btn" id="btn-qty-minus" aria-label="Decrease quantity">-</button>
+              <input type="number" class="qty-input" id="detail-qty-input" value="1" min="1" max="99" readonly>
+              <button class="qty-btn" id="btn-qty-plus" aria-label="Increase quantity">+</button>
+            </div>
+
+            <button class="btn btn-primary btn-lg" id="btn-detail-add-cart" style="flex: 1;">
+              <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+
+            <button class="btn btn-secondary btn-lg" id="btn-detail-buy-now" style="flex: 1;">
+              <i class="fas fa-bolt"></i> Buy Now
+            </button>
+
+            <button class="btn-wishlist" id="btn-detail-wishlist" style="position: static; width: 48px; height: 48px; font-size: 1.25rem;" title="Add to Wishlist">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+
+          <!-- Trust Badges -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color);">
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: #64748b;">
+              <i class="fas fa-shield-alt text-red"></i> 100% Genuine
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: #64748b;">
+              <i class="fas fa-truck text-red"></i> Islandwide Delivery
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: #64748b;">
+              <i class="fas fa-undo text-red"></i> 14-Day Returns
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- =====================================================================
+           Product Tabs Section (Description, Specs, Fitment, Reviews)
+           ===================================================================== -->
+      <section class="product-tabs-section">
+        
+        <div class="tab-nav-buttons">
+          <button class="tab-nav-btn active" data-tab="tab-desc">Description</button>
+          <button class="tab-nav-btn" data-tab="tab-specs">Technical Specifications</button>
+          <button class="tab-nav-btn" data-tab="tab-fitment">Vehicle Compatibility</button>
+          <button class="tab-nav-btn" data-tab="tab-reviews">Customer Reviews (<span id="tab-reviews-count">0</span>)</button>
+        </div>
+
+        <!-- Tab 1: Description -->
+        <div class="tab-content-panel active" id="tab-desc">
+          <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">Product Overview</h3>
+          <p id="detail-full-description" style="line-height: 1.8; color: #334155; margin-bottom: 1.5rem;">
+            Full details about this automotive component...
+          </p>
+          <div style="background: #f8fafc; padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--primary-red);">
+            <h4 style="font-size: 0.95rem; margin-bottom: 0.4rem;"><i class="fas fa-tools text-red"></i> Professional Installation Recommended</h4>
+            <p style="font-size: 0.88rem; color: #64748b;">
+              For maximum safety and warranty compliance, we recommend having this component installed by a certified automotive technician.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tab 2: Technical Specifications -->
+        <div class="tab-content-panel" id="tab-specs">
+          <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">Technical Specifications</h3>
+          <table class="specs-table" id="detail-specs-table">
+            <!-- Populated via JS -->
+          </table>
+        </div>
+
+        <!-- Tab 3: Vehicle Compatibility -->
+        <div class="tab-content-panel" id="tab-fitment">
+          <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">Verified Fitment List</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.25rem;">
+            This spare part is guaranteed to fit the following vehicle chassis and model years:
+          </p>
+          <ul id="detail-fitment-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <!-- Populated via JS -->
+          </ul>
+        </div>
+
+        <!-- Tab 4: Customer Reviews -->
+        <div class="tab-content-panel" id="tab-reviews">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;">
+            
+            <div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem;">Verified Customer Ratings</h3>
+              <div class="reviews-list-container" id="detail-reviews-list" style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+            <!-- Add Review Form -->
+            <div style="background: #f8fafc; padding: 1.75rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Write a Review</h3>
+              <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.25rem;">Share your experience with other Sri Lankan car owners</p>
+
+              <form id="review-form">
+                <div class="form-group">
+                  <label class="form-label">Your Name</label>
+                  <input type="text" class="form-control" id="review-name" required placeholder="e.g. Nimal Perera">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Vehicle Make &amp; Model</label>
+                  <input type="text" class="form-control" id="review-vehicle" required placeholder="e.g. Toyota Corolla 2018">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Rating</label>
+                  <select class="form-control" id="review-rating">
+                    <option value="5">⭐⭐⭐⭐⭐ (5/5 Excellent)</option>
+                    <option value="4">⭐⭐⭐⭐ (4/5 Good)</option>
+                    <option value="3">⭐⭐⭐ (3/5 Average)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Review Comment</label>
+                  <textarea class="form-control" id="review-comment" rows="3" required placeholder="Describe fitment, quality, performance..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                  <i class="fas fa-paper-plane"></i> Submit Review
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Related Products Section -->
+      <section style="margin-top: 4.5rem;">
+        <div class="section-title-wrap">
+          <h2 class="section-title">RELATED SPARE PARTS</h2>
+          <p class="section-subtitle">Customers also purchased these matching vehicle components</p>
+        </div>
+        <div class="products-grid" id="related-products-grid">
+          <!-- Populated via JS -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="brand-icon"><i class="fas fa-cog"></i></div>
+            <div class="brand-text">
+              <span class="brand-title" style="color: white;">AUTO <span>HUB</span></span>
+              <span class="brand-subtitle" style="color: #94a3b8;">SPARE PARTS &amp; ACCESSORIES</span>
+            </div>
+          </a>
+          <p class="footer-about-text">
+            Sri Lanka's leading automotive spare parts e-commerce destination with 100% genuine parts and guaranteed fitment.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="shop.html"><i class="fas fa-chevron-right"></i> Shop Parts</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Customer Service</h3>
+          <div class="footer-links">
+            <a href="track-order.html"><i class="fas fa-chevron-right"></i> Track Order</a>
+            <a href="wishlist.html"><i class="fas fa-chevron-right"></i> Wishlist</a>
+            <a href="cart.html"><i class="fas fa-chevron-right"></i> Cart</a>
+            <a href="contact.html#faq"><i class="fas fa-chevron-right"></i> FAQs</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:0707275599" style="color: inherit;">070 727 5599</a></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope"></i> <a href="mailto:nithilarodrigo@gmail.com" style="color: inherit;">nithilarodrigo@gmail.com</a></div>
+            <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> No. 142, Galle Road, Colombo 03</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div>&copy; 2026 AUTO HUB – Sri Lanka. All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon" style="width: 36px; height: 36px;"><i class="fas fa-cog"></i></div>
+        <div class="brand-text"><span class="brand-title" style="color: white; font-size: 1.25rem;">AUTO <span>HUB</span></span></div>
+      </a>
+      <button class="drawer-close-btn" id="drawer-close-btn">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-links">
+        <a href="index.html" class="drawer-link">Home <i class="fas fa-chevron-right"></i></a>
+        <a href="shop.html" class="drawer-link">Shop All Parts <i class="fas fa-chevron-right"></i></a>
+        <a href="wishlist.html" class="drawer-link">Wishlist <span class="badge badge-discount wishlist-badge-count" style="display:none;">0</span></a>
+        <a href="cart.html" class="drawer-link">Cart <span class="badge badge-discount cart-badge-count" style="display:none;">0</span></a>
+        <a href="track-order.html" class="drawer-link">Track Order <i class="fas fa-chevron-right"></i></a>
+        <a href="about.html" class="drawer-link">About Us <i class="fas fa-chevron-right"></i></a>
+        <a href="contact.html" class="drawer-link">Contact Us <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- Product Details Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = Number(urlParams.get('id')) || 1;
+      const product = AUTO_HUB_DATA.products.find(p => p.id === productId) || AUTO_HUB_DATA.products[0];
+
+      // Update Page Title
+      document.title = `${product.name} | AUTO HUB Sri Lanka`;
+
+      // Breadcrumbs
+      document.getElementById('detail-category-crumb').textContent = product.categoryName;
+      document.getElementById('detail-title-crumb').textContent = product.name;
+
+      // Images
+      const mainImg = document.getElementById('detail-main-img');
+      mainImg.src = product.image;
+      mainImg.alt = product.name;
+
+      const thumbsContainer = document.getElementById('detail-thumbnails');
+      const gallery = product.gallery || [product.image];
+      thumbsContainer.innerHTML = gallery.map((imgSrc, idx) => `
+        <div class="thumb-item ${idx === 0 ? 'active' : ''}" data-src="${imgSrc}">
+          <img src="${imgSrc}" alt="Thumbnail ${idx + 1}">
+        </div>
+      `).join('');
+
+      thumbsContainer.querySelectorAll('.thumb-item').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          thumbsContainer.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+          mainImg.src = thumb.getAttribute('data-src');
+        });
+      });
+
+      // Product Details Fill
+      document.getElementById('detail-brand-badge').textContent = product.brand;
+      document.getElementById('detail-title').textContent = product.name;
+      document.getElementById('detail-part-no').textContent = product.partNumber;
+      document.getElementById('detail-sku').textContent = product.sku;
+      document.getElementById('detail-price').textContent = Store.formatPrice(product.price);
+      
+      const oldPriceEl = document.getElementById('detail-old-price');
+      const discountEl = document.getElementById('detail-discount-badge');
+      if (product.oldPrice && product.oldPrice > product.price) {
+        oldPriceEl.textContent = Store.formatPrice(product.oldPrice);
+        discountEl.textContent = `Save ${product.discount || Math.round((1 - product.price/product.oldPrice)*100)}%`;
+      } else {
+        oldPriceEl.style.display = 'none';
+        discountEl.style.display = 'none';
+      }
+
+      document.getElementById('detail-stars').innerHTML = getStarRatingHtml(product.rating);
+      document.getElementById('detail-rating-text').textContent = `(${product.rating} / 5.0 rating &bull; ${product.reviewsCount} customer reviews)`;
+      document.getElementById('detail-compat-heading').textContent = `Guaranteed Fit: ${product.make} ${product.model} (${product.yearRange})`;
+      document.getElementById('detail-short-desc').textContent = product.shortDescription;
+      document.getElementById('detail-full-description').textContent = product.description;
+
+      // Wishlist Button State
+      const wishBtn = document.getElementById('btn-detail-wishlist');
+      const isWish = Store.isInWishlist(product.id);
+      if (isWish) {
+        wishBtn.classList.add('active');
+        wishBtn.querySelector('i').className = 'fas fa-heart';
+      }
+      wishBtn.addEventListener('click', () => {
+        const added = Store.toggleWishlist(product.id);
+        if (added) {
+          wishBtn.classList.add('active');
+          wishBtn.querySelector('i').className = 'fas fa-heart';
+        } else {
+          wishBtn.classList.remove('active');
+          wishBtn.querySelector('i').className = 'far fa-heart';
+        }
+      });
+
+      // Stepper Logic
+      const qtyInput = document.getElementById('detail-qty-input');
+      document.getElementById('btn-qty-minus').addEventListener('click', () => {
+        let val = parseInt(qtyInput.value) || 1;
+        if (val > 1) qtyInput.value = val - 1;
+      });
+      document.getElementById('btn-qty-plus').addEventListener('click', () => {
+        let val = parseInt(qtyInput.value) || 1;
+        qtyInput.value = val + 1;
+      });
+
+      // Add to Cart
+      document.getElementById('btn-detail-add-cart').addEventListener('click', () => {
+        const qty = parseInt(qtyInput.value) || 1;
+        Store.addToCart(product.id, qty);
+      });
+
+      // Buy Now
+      document.getElementById('btn-detail-buy-now').addEventListener('click', () => {
+        const qty = parseInt(qtyInput.value) || 1;
+        Store.addToCart(product.id, qty);
+        window.location.href = 'checkout.html';
+      });
+
+      // Specs Table
+      const specsTable = document.getElementById('detail-specs-table');
+      if (product.specs) {
+        specsTable.innerHTML = Object.entries(product.specs).map(([key, val]) => `
+          <tr>
+            <th>${escapeHtml(key)}</th>
+            <td>${escapeHtml(val)}</td>
+          </tr>
+        `).join('');
+      }
+
+      // Fitment List
+      const fitmentList = document.getElementById('detail-fitment-list');
+      if (product.fitment && product.fitment.length > 0) {
+        fitmentList.innerHTML = product.fitment.map(item => `
+          <li style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.92rem; color: #1e293b;">
+            <i class="fas fa-check text-red"></i> ${escapeHtml(item)}
+          </li>
+        `).join('');
+      }
+
+      // Reviews List
+      document.getElementById('tab-reviews-count').textContent = AUTO_HUB_DATA.reviews.length;
+      const reviewsList = document.getElementById('detail-reviews-list');
+      reviewsList.innerHTML = AUTO_HUB_DATA.reviews.map(r => `
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <strong style="font-size: 0.95rem;">${escapeHtml(r.author)}</strong>
+            <span style="font-size: 0.78rem; color: #94a3b8;">${r.date}</span>
+          </div>
+          <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.5rem;">
+            <i class="fas fa-car-side"></i> ${r.vehicle} &bull; ${r.location}
+          </div>
+          <div class="stars" style="margin-bottom: 0.5rem; font-size: 0.8rem;">
+            ${getStarRatingHtml(r.rating)}
+          </div>
+          <p style="font-size: 0.88rem; color: #334155; font-style: italic;">"${escapeHtml(r.comment)}"</p>
+        </div>
+      `).join('');
+
+      // Review Form Submission
+      const reviewForm = document.getElementById('review-form');
+      reviewForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const author = document.getElementById('review-name').value;
+        const vehicle = document.getElementById('review-vehicle').value;
+        const rating = Number(document.getElementById('review-rating').value);
+        const comment = document.getElementById('review-comment').value;
+
+        const newReview = {
+          id: Date.now(),
+          author,
+          vehicle,
+          location: 'Colombo, Sri Lanka',
+          rating,
+          date: 'Just now',
+          comment
+        };
+
+        AUTO_HUB_DATA.reviews.unshift(newReview);
+        Store.showToast('Thank you! Your verified review has been submitted.', 'success');
+        reviewForm.reset();
+
+        // Refresh reviews list
+        document.getElementById('tab-reviews-count').textContent = AUTO_HUB_DATA.reviews.length;
+        reviewsList.insertAdjacentHTML('afterbegin', `
+          <div style="background: white; border: 1px solid #86efac; border-radius: 8px; padding: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <strong style="font-size: 0.95rem;">${escapeHtml(newReview.author)} <span class="badge badge-instock">New</span></strong>
+              <span style="font-size: 0.78rem; color: #94a3b8;">Just now</span>
+            </div>
+            <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.5rem;">
+              <i class="fas fa-car-side"></i> ${escapeHtml(newReview.vehicle)}
+            </div>
+            <div class="stars" style="margin-bottom: 0.5rem; font-size: 0.8rem;">
+              ${getStarRatingHtml(newReview.rating)}
+            </div>
+            <p style="font-size: 0.88rem; color: #334155; font-style: italic;">"${escapeHtml(newReview.comment)}"</p>
+          </div>
+        `);
+      });
+
+      // Tabs Navigation
+      const tabBtns = document.querySelectorAll('.tab-nav-btn');
+      const tabPanels = document.querySelectorAll('.tab-content-panel');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabPanels.forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          const targetId = btn.getAttribute('data-tab');
+          document.getElementById(targetId).classList.add('active');
+        });
+      });
+
+      // Related Products
+      const relatedGrid = document.getElementById('related-products-grid');
+      const relatedList = AUTO_HUB_DATA.products.filter(p => p.id !== product.id && (p.category === product.category || p.make === product.make)).slice(0, 4);
+      relatedGrid.innerHTML = relatedList.map(item => createProductCardHtml(item)).join('');
+      bindProductCardEvents(relatedGrid);
+    });
+  </script>
+</body>
+</html>

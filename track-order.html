@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order | AUTO HUB – Spare Parts &amp; Accessories</title>
+  <meta name="description" content="Track your automotive spare parts delivery live across Sri Lanka with AUTO HUB real-time parcel tracking.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="images/logo/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="container">
+      <div class="top-header-left">
+        <a href="tel:0707275599"><i class="fas fa-phone-alt"></i> 070 727 5599</a>
+        <span class="top-header-divider"></span>
+        <a href="mailto:nithilarodrigo@gmail.com"><i class="fas fa-envelope"></i> nithilarodrigo@gmail.com</a>
+      </div>
+      <div class="top-header-right">
+        <a href="track-order.html"><i class="fas fa-truck"></i> Track Order</a>
+        <span class="top-header-divider"></span>
+        <a href="contact.html"><i class="fas fa-headset"></i> Help Center</a>
+        <span class="top-header-divider"></span>
+        <a href="login.html"><i class="fas fa-user"></i> Login / Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navbar -->
+  <nav class="main-navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fas fa-cog"></i></div>
+          <div class="brand-text">
+            <span class="brand-title">AUTO <span>HUB</span></span>
+            <span class="brand-subtitle">SPARE PARTS &amp; ACCESSORIES</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item">
+            <a href="shop.html" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu">
+              <a href="category.html?id=body-parts" class="dropdown-item"><i class="fas fa-car-side"></i> Body Parts</a>
+              <a href="category.html?id=brake-system" class="dropdown-item"><i class="fas fa-compact-disc"></i> Brake System</a>
+              <a href="category.html?id=cooling-system" class="dropdown-item"><i class="fas fa-fan"></i> Cooling System</a>
+              <a href="category.html?id=electrical" class="dropdown-item"><i class="fas fa-bolt"></i> Electrical</a>
+              <a href="category.html?id=engine-parts" class="dropdown-item"><i class="fas fa-cogs"></i> Engine Parts</a>
+              <a href="category.html?id=filters" class="dropdown-item"><i class="fas fa-filter"></i> Filters</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="shop.html" class="nav-link">Vehicles</a></li>
+          <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <div class="search-wrapper">
+            <form class="search-form">
+              <input type="text" class="search-input" placeholder="Search parts, categories..." autocomplete="off">
+              <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+
+          <a href="wishlist.html" class="nav-icon-link" title="My Wishlist">
+            <i class="far fa-heart"></i>
+            <span class="badge-count wishlist-badge-count" style="display: none;">0</span>
+          </a>
+
+          <a href="cart.html" class="nav-icon-link" title="Shopping Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge-count cart-badge-count" style="display: none;">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <section style="background: linear-gradient(135deg, #070a12 0%, #0f172a 100%); color: white; padding: 3.5rem 0; border-bottom: 3px solid var(--primary-red); text-align: center;">
+    <div class="container">
+      <h1 style="font-size: 2.5rem; font-weight: 900; color: white; margin-bottom: 0.5rem;">
+        TRACK YOUR <span class="text-red">SHIPMENT</span>
+      </h1>
+      <p style="font-size: 1rem; color: #94a3b8; max-width: 540px; margin: 0 auto;">
+        Enter your AUTO HUB Order Tracking ID to see the live location and dispatch status of your spare parts.
+      </p>
+    </div>
+  </section>
+
+  <!-- Track Order Main Section -->
+  <main class="shop-page-wrap">
+    <div class="container">
+      
+      <!-- Order Search Card -->
+      <div style="max-width: 650px; margin: 0 auto 3.5rem; background: white; border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md);">
+        <form id="track-form" style="display: flex; gap: 0.75rem;">
+          <input type="text" class="form-control" id="track-input" placeholder="Enter Order ID (e.g. AH-89421)" required style="font-size: 1rem; font-weight: 600; text-transform: uppercase;">
+          <button type="submit" class="btn btn-primary" style="padding: 0 1.75rem;">
+            <i class="fas fa-search"></i> Track
+          </button>
+        </form>
+      </div>
+
+      <!-- Live Order Status Display -->
+      <div id="tracking-result-box" style="max-width: 800px; margin: 0 auto; background: white; border: 1px solid var(--border-color); border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow-lg);">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <div style="font-size: 0.85rem; color: #64748b;">ORDER NUMBER</div>
+            <div style="font-size: 1.5rem; font-weight: 900; color: var(--primary-red);" id="track-disp-order-id">AH-89421</div>
+          </div>
+          <div>
+            <span class="badge badge-instock" style="font-size: 0.9rem; padding: 0.4rem 0.85rem;" id="track-disp-status">
+              <i class="fas fa-box"></i> Out for Islandwide Delivery
+            </span>
+          </div>
+        </div>
+
+        <!-- Stepper Timeline -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; position: relative; margin-bottom: 3rem; text-align: center;">
+          
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+            <div style="width: 44px; height: 44px; border-radius: 9999px; background: #10b981; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+              <i class="fas fa-check"></i>
+            </div>
+            <span style="font-weight: 700; font-size: 0.85rem; color: var(--text-main);">Order Placed</span>
+            <span style="font-size: 0.75rem; color: #94a3b8;">Yesterday</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+            <div style="width: 44px; height: 44px; border-radius: 9999px; background: #10b981; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+              <i class="fas fa-check"></i>
+            </div>
+            <span style="font-weight: 700; font-size: 0.85rem; color: var(--text-main);">Parts Verified</span>
+            <span style="font-size: 0.75rem; color: #94a3b8;">Fitment Checked</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+            <div style="width: 44px; height: 44px; border-radius: 9999px; background: var(--primary-red); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 0 15px rgba(225,29,72,0.5);">
+              <i class="fas fa-truck"></i>
+            </div>
+            <span style="font-weight: 700; font-size: 0.85rem; color: var(--primary-red);">Dispatched</span>
+            <span style="font-size: 0.75rem; color: #64748b;">In Transit</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+            <div style="width: 44px; height: 44px; border-radius: 9999px; background: #e2e8f0; color: #94a3b8; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+              <i class="fas fa-home"></i>
+            </div>
+            <span style="font-weight: 700; font-size: 0.85rem; color: #94a3b8;">Delivered</span>
+            <span style="font-size: 0.75rem; color: #94a3b8;">Est: Today 4:00 PM</span>
+          </div>
+
+        </div>
+
+        <!-- Package & Delivery Info -->
+        <div style="background: #f8fafc; border-radius: 12px; padding: 1.5rem; border: 1px solid #e2e8f0;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div>
+              <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.25rem;">DELIVERY DESTINATION</div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main);" id="track-dest">Kasun Jayasuriya &bull; Colombo 07</div>
+              <div style="font-size: 0.82rem; color: #64748b; margin-top: 0.2rem;">PromptX Express Courier &bull; Waybill: LK-9920194</div>
+            </div>
+
+            <div>
+              <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.25rem;">SUPPORT HOTLINE</div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-red);"><i class="fas fa-phone-alt"></i> <a href="tel:0707275599" style="color: inherit;">070 727 5599</a></div>
+              <div style="font-size: 0.82rem; color: #64748b; margin-top: 0.2rem;">Call if you need to reschedule delivery time</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="brand-icon"><i class="fas fa-cog"></i></div>
+            <div class="brand-text">
+              <span class="brand-title" style="color: white;">AUTO <span>HUB</span></span>
+              <span class="brand-subtitle" style="color: #94a3b8;">SPARE PARTS &amp; ACCESSORIES</span>
+            </div>
+          </a>
+          <p class="footer-about-text">
+            Sri Lanka's leading automotive spare parts e-commerce destination with 100% genuine parts and guaranteed fitment.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="shop.html"><i class="fas fa-chevron-right"></i> Shop Parts</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Customer Service</h3>
+          <div class="footer-links">
+            <a href="track-order.html"><i class="fas fa-chevron-right"></i> Track Order</a>
+            <a href="wishlist.html"><i class="fas fa-chevron-right"></i> Wishlist</a>
+            <a href="cart.html"><i class="fas fa-chevron-right"></i> Cart</a>
+            <a href="contact.html#faq"><i class="fas fa-chevron-right"></i> FAQs</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:0707275599" style="color: inherit;">070 727 5599</a></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope"></i> <a href="mailto:nithilarodrigo@gmail.com" style="color: inherit;">nithilarodrigo@gmail.com</a></div>
+            <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> No. 142, Galle Road, Colombo 03</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div>&copy; 2026 AUTO HUB – Sri Lanka. All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon" style="width: 36px; height: 36px;"><i class="fas fa-cog"></i></div>
+        <div class="brand-text"><span class="brand-title" style="color: white; font-size: 1.25rem;">AUTO <span>HUB</span></span></div>
+      </a>
+      <button class="drawer-close-btn" id="drawer-close-btn">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-links">
+        <a href="index.html" class="drawer-link">Home <i class="fas fa-chevron-right"></i></a>
+        <a href="shop.html" class="drawer-link">Shop All Parts <i class="fas fa-chevron-right"></i></a>
+        <a href="wishlist.html" class="drawer-link">Wishlist <span class="badge badge-discount wishlist-badge-count" style="display:none;">0</span></a>
+        <a href="cart.html" class="drawer-link">Cart <span class="badge badge-discount cart-badge-count" style="display:none;">0</span></a>
+        <a href="track-order.html" class="drawer-link active">Track Order <i class="fas fa-chevron-right"></i></a>
+        <a href="about.html" class="drawer-link">About Us <i class="fas fa-chevron-right"></i></a>
+        <a href="contact.html" class="drawer-link">Contact Us <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/script.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryOrderId = urlParams.get('orderId') || localStorage.getItem('latest_order_id') || 'AH-89421';
+
+      document.getElementById('track-input').value = queryOrderId;
+      loadOrder(queryOrderId);
+
+      document.getElementById('track-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = document.getElementById('track-input').value.trim().toUpperCase();
+        loadOrder(id);
+      });
+
+      function loadOrder(orderId) {
+        document.getElementById('track-disp-order-id').textContent = orderId;
+        const savedOrder = localStorage.getItem(`order_${orderId}`);
+        if (savedOrder) {
+          const order = JSON.parse(savedOrder);
+          document.getElementById('track-dest').textContent = `${order.name} • ${order.city || 'Colombo'}`;
+        }
+        Store.showToast(`Tracking status updated for order <strong>${orderId}</strong>`, 'info');
+      }
+    });
+  </script>
+</body>
+</html>

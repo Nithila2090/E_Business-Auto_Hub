@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Automotive Spare Parts &amp; Accessories | AUTO HUB Sri Lanka</title>
+  <meta name="description" content="Browse hundreds of automotive spare parts with verified vehicle compatibility. Filter by make, model, brand, price and category. Fast islandwide delivery in Sri Lanka.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="images/logo/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="container">
+      <div class="top-header-left">
+        <a href="tel:0707275599"><i class="fas fa-phone-alt"></i> 070 727 5599</a>
+        <span class="top-header-divider"></span>
+        <a href="mailto:nithilarodrigo@gmail.com"><i class="fas fa-envelope"></i> nithilarodrigo@gmail.com</a>
+      </div>
+      <div class="top-header-right">
+        <a href="track-order.html"><i class="fas fa-truck"></i> Track Order</a>
+        <span class="top-header-divider"></span>
+        <a href="contact.html"><i class="fas fa-headset"></i> Help Center</a>
+        <span class="top-header-divider"></span>
+        <a href="login.html"><i class="fas fa-user"></i> Login / Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navbar -->
+  <nav class="main-navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon">
+            <i class="fas fa-cog"></i>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">AUTO <span>HUB</span></span>
+            <span class="brand-subtitle">SPARE PARTS &amp; ACCESSORIES</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item">
+            <a href="shop.html" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu">
+              <a href="category.html?id=body-parts" class="dropdown-item"><i class="fas fa-car-side"></i> Body Parts</a>
+              <a href="category.html?id=brake-system" class="dropdown-item"><i class="fas fa-compact-disc"></i> Brake System</a>
+              <a href="category.html?id=cooling-system" class="dropdown-item"><i class="fas fa-fan"></i> Cooling System</a>
+              <a href="category.html?id=electrical" class="dropdown-item"><i class="fas fa-bolt"></i> Electrical</a>
+              <a href="category.html?id=engine-parts" class="dropdown-item"><i class="fas fa-cogs"></i> Engine Parts</a>
+              <a href="category.html?id=filters" class="dropdown-item"><i class="fas fa-filter"></i> Filters</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="shop.html" class="nav-link">Vehicles</a></li>
+          <li class="nav-item"><a href="shop.html" class="nav-link active">Shop</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <div class="search-wrapper">
+            <form class="search-form">
+              <input type="text" class="search-input" placeholder="Search parts, categories, vehicle model..." autocomplete="off">
+              <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+
+          <a href="wishlist.html" class="nav-icon-link" title="My Wishlist">
+            <i class="far fa-heart"></i>
+            <span class="badge-count wishlist-badge-count" style="display: none;">0</span>
+          </a>
+
+          <a href="cart.html" class="nav-icon-link" title="Shopping Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge-count cart-badge-count" style="display: none;">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       Shop Page Main Area
+       ========================================================================= -->
+  <main class="shop-page-wrap">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb-nav">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <a href="shop.html">Shop Catalog</a>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <span id="breadcrumb-current">All Products</span>
+      </nav>
+
+      <!-- Shop Layout: Sidebar + Grid -->
+      <div class="shop-layout">
+        
+        <!-- Left Filter Sidebar -->
+        <aside class="shop-sidebar">
+          <div class="sidebar-title">
+            <span><i class="fas fa-filter text-red"></i> Filters</span>
+            <button class="btn-clear-filters" id="btn-clear-filters">Reset All</button>
+          </div>
+
+          <!-- Active Filter Chips (if applied) -->
+          <div id="active-filter-chips" style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem;"></div>
+
+          <!-- Filter: Vehicle Make & Model -->
+          <div class="filter-group">
+            <h4 class="filter-group-title">Select Vehicle</h4>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+              <select class="form-control select-make" id="shop-filter-make" style="padding: 0.5rem 0.75rem; font-size: 0.85rem;">
+                <option value="">All Vehicle Makes</option>
+              </select>
+              <select class="form-control select-model" id="shop-filter-model" style="padding: 0.5rem 0.75rem; font-size: 0.85rem;" disabled>
+                <option value="">All Models</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Filter: Category -->
+          <div class="filter-group">
+            <h4 class="filter-group-title">Categories</h4>
+            <div class="filter-list" id="category-filter-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Filter: Brand -->
+          <div class="filter-group">
+            <h4 class="filter-group-title">Brand / Manufacturer</h4>
+            <div class="filter-list" id="brand-filter-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Filter: Price Range -->
+          <div class="filter-group">
+            <h4 class="filter-group-title">Price Range (LKR)</h4>
+            <div class="price-slider-wrap">
+              <input type="range" id="price-range-slider" min="1000" max="50000" step="1000" value="50000" style="width: 100%; accent-color: var(--primary-red); cursor: pointer;">
+              <div class="price-range-inputs">
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Max:</span>
+                <span id="price-slider-value" style="font-weight: 700; color: var(--primary-red); font-size: 0.95rem;">Rs. 50,000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filter: Availability -->
+          <div class="filter-group">
+            <h4 class="filter-group-title">Availability</h4>
+            <label class="filter-checkbox-label">
+              <input type="checkbox" id="filter-instock-only" checked>
+              <span>In Stock Only</span>
+            </label>
+          </div>
+        </aside>
+
+        <!-- Right Product Grid Area -->
+        <section class="shop-products-column">
+          
+          <!-- Controls Bar -->
+          <div class="shop-controls-bar">
+            <div class="results-count">
+              Showing <strong id="showing-count-text">0</strong> parts
+            </div>
+
+            <div class="shop-sort-controls">
+              <label for="shop-sort-select" style="font-size: 0.85rem; color: var(--text-muted);">Sort By:</label>
+              <select id="shop-sort-select" class="sort-select">
+                <option value="featured">Featured / Default</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating">Customer Rating</option>
+                <option value="bestselling">Best Selling</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Product Grid -->
+          <div class="products-grid" id="shop-products-grid">
+            <!-- Populated via JS -->
+          </div>
+
+          <!-- Empty State Container -->
+          <div id="shop-empty-state" style="display: none; text-align: center; padding: 4rem 1.5rem; background: white; border-radius: 16px; border: 1px dashed #cbd5e1;">
+            <i class="fas fa-search text-muted" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem;">No matching spare parts found</h3>
+            <p style="color: #64748b; margin-bottom: 1.5rem;">Try adjusting your vehicle filters or search terms.</p>
+            <button class="btn btn-primary" id="btn-reset-empty"><i class="fas fa-redo"></i> Reset All Filters</button>
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination-wrap" id="shop-pagination">
+            <!-- Populated dynamically -->
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="brand-icon"><i class="fas fa-cog"></i></div>
+            <div class="brand-text">
+              <span class="brand-title" style="color: white;">AUTO <span>HUB</span></span>
+              <span class="brand-subtitle" style="color: #94a3b8;">SPARE PARTS &amp; ACCESSORIES</span>
+            </div>
+          </a>
+          <p class="footer-about-text">
+            Sri Lanka's leading automotive spare parts e-commerce destination with 100% genuine parts and guaranteed fitment.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="shop.html"><i class="fas fa-chevron-right"></i> Shop Parts</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Customer Service</h3>
+          <div class="footer-links">
+            <a href="track-order.html"><i class="fas fa-chevron-right"></i> Track Order</a>
+            <a href="wishlist.html"><i class="fas fa-chevron-right"></i> Wishlist</a>
+            <a href="cart.html"><i class="fas fa-chevron-right"></i> Cart</a>
+            <a href="contact.html#faq"><i class="fas fa-chevron-right"></i> FAQs</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:0707275599" style="color: inherit;">070 727 5599</a></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope"></i> <a href="mailto:nithilarodrigo@gmail.com" style="color: inherit;">nithilarodrigo@gmail.com</a></div>
+            <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> No. 142, Galle Road, Colombo 03</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div>&copy; 2026 AUTO HUB – Sri Lanka. All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon" style="width: 36px; height: 36px;"><i class="fas fa-cog"></i></div>
+        <div class="brand-text"><span class="brand-title" style="color: white; font-size: 1.25rem;">AUTO <span>HUB</span></span></div>
+      </a>
+      <button class="drawer-close-btn" id="drawer-close-btn">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-links">
+        <a href="index.html" class="drawer-link">Home <i class="fas fa-chevron-right"></i></a>
+        <a href="shop.html" class="drawer-link active">Shop All Parts <i class="fas fa-chevron-right"></i></a>
+        <a href="wishlist.html" class="drawer-link">Wishlist <span class="badge badge-discount wishlist-badge-count" style="display:none;">0</span></a>
+        <a href="cart.html" class="drawer-link">Cart <span class="badge badge-discount cart-badge-count" style="display:none;">0</span></a>
+        <a href="track-order.html" class="drawer-link">Track Order <i class="fas fa-chevron-right"></i></a>
+        <a href="about.html" class="drawer-link">About Us <i class="fas fa-chevron-right"></i></a>
+        <a href="contact.html" class="drawer-link">Contact Us <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- Shop Logic Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initShopPage();
+    });
+
+    function initShopPage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      let selectedCategory = urlParams.get('category') || '';
+      let selectedMake = urlParams.get('make') || '';
+      let selectedModel = urlParams.get('model') || '';
+      let searchQuery = urlParams.get('search') || '';
+      let isSaleOnly = urlParams.get('sale') === 'true';
+      let selectedBrands = [];
+      let maxPrice = 50000;
+      let inStockOnly = true;
+      let currentSort = 'featured';
+
+      const grid = document.getElementById('shop-products-grid');
+      const emptyState = document.getElementById('shop-empty-state');
+      const countText = document.getElementById('showing-count-text');
+      const sortSelect = document.getElementById('shop-sort-select');
+      const priceSlider = document.getElementById('price-range-slider');
+      const priceSliderVal = document.getElementById('price-slider-value');
+      const instockCheck = document.getElementById('filter-instock-only');
+      const clearBtn = document.getElementById('btn-clear-filters');
+      const resetEmptyBtn = document.getElementById('btn-reset-empty');
+
+      // Populate Categories in Sidebar
+      const catList = document.getElementById('category-filter-list');
+      catList.innerHTML = AUTO_HUB_DATA.categories.map(c => {
+        const count = AUTO_HUB_DATA.products.filter(p => p.category === c.id).length;
+        const isChecked = selectedCategory === c.id ? 'checked' : '';
+        return `
+          <label class="filter-checkbox-label">
+            <input type="radio" name="shop-category-radio" value="${c.id}" ${isChecked}>
+            <span>${c.name}</span>
+            <span class="filter-count">(${count})</span>
+          </label>
+        `;
+      }).join('');
+
+      // Add "All Categories" option
+      const allCatOption = document.createElement('label');
+      allCatOption.className = 'filter-checkbox-label';
+      allCatOption.innerHTML = `
+        <input type="radio" name="shop-category-radio" value="" ${!selectedCategory ? 'checked' : ''}>
+        <span>All Categories</span>
+        <span class="filter-count">(${AUTO_HUB_DATA.products.length})</span>
+      `;
+      catList.prepend(allCatOption);
+
+      // Populate Brands in Sidebar
+      const brandList = document.getElementById('brand-filter-list');
+      const uniqueBrands = [...new Set(AUTO_HUB_DATA.products.map(p => p.brand))];
+      brandList.innerHTML = uniqueBrands.map(brand => {
+        const count = AUTO_HUB_DATA.products.filter(p => p.brand === brand).length;
+        return `
+          <label class="filter-checkbox-label">
+            <input type="checkbox" class="brand-checkbox" value="${brand}">
+            <span>${brand}</span>
+            <span class="filter-count">(${count})</span>
+          </label>
+        `;
+      }).join('');
+
+      // Populate Vehicle Make dropdown
+      const makeSelect = document.getElementById('shop-filter-make');
+      const modelSelect = document.getElementById('shop-filter-model');
+      if (makeSelect && AUTO_HUB_DATA.vehicles) {
+        Object.keys(AUTO_HUB_DATA.vehicles).forEach(make => {
+          const opt = document.createElement('option');
+          opt.value = make;
+          opt.textContent = make;
+          if (make === selectedMake) opt.selected = true;
+          makeSelect.appendChild(opt);
+        });
+
+        if (selectedMake && AUTO_HUB_DATA.vehicles[selectedMake]) {
+          modelSelect.disabled = false;
+          modelSelect.innerHTML = '<option value="">All Models</option>';
+          AUTO_HUB_DATA.vehicles[selectedMake].models.forEach(model => {
+            const opt = document.createElement('option');
+            opt.value = model;
+            opt.textContent = model;
+            if (model === selectedModel) opt.selected = true;
+            modelSelect.appendChild(opt);
+          });
+        }
+
+        makeSelect.addEventListener('change', (e) => {
+          selectedMake = e.target.value;
+          selectedModel = '';
+          if (selectedMake && AUTO_HUB_DATA.vehicles[selectedMake]) {
+            modelSelect.disabled = false;
+            modelSelect.innerHTML = '<option value="">All Models</option>';
+            AUTO_HUB_DATA.vehicles[selectedMake].models.forEach(model => {
+              const opt = document.createElement('option');
+              opt.value = model;
+              opt.textContent = model;
+              modelSelect.appendChild(opt);
+            });
+          } else {
+            modelSelect.innerHTML = '<option value="">All Models</option>';
+            modelSelect.disabled = true;
+          }
+          filterAndRender();
+        });
+
+        modelSelect.addEventListener('change', (e) => {
+          selectedModel = e.target.value;
+          filterAndRender();
+        });
+      }
+
+      // Category Radio Change
+      catList.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          selectedCategory = e.target.value;
+          filterAndRender();
+        });
+      });
+
+      // Brand Checkbox Change
+      brandList.querySelectorAll('.brand-checkbox').forEach(cb => {
+        cb.addEventListener('change', () => {
+          selectedBrands = Array.from(brandList.querySelectorAll('.brand-checkbox:checked')).map(c => c.value);
+          filterAndRender();
+        });
+      });
+
+      // Price Slider
+      priceSlider.addEventListener('input', (e) => {
+        maxPrice = Number(e.target.value);
+        priceSliderVal.textContent = Store.formatPrice(maxPrice);
+        filterAndRender();
+      });
+
+      // In-stock checkbox
+      instockCheck.addEventListener('change', (e) => {
+        inStockOnly = e.target.checked;
+        filterAndRender();
+      });
+
+      // Sort select
+      sortSelect.addEventListener('change', (e) => {
+        currentSort = e.target.value;
+        filterAndRender();
+      });
+
+      // Reset buttons
+      function resetFilters() {
+        selectedCategory = '';
+        selectedMake = '';
+        selectedModel = '';
+        searchQuery = '';
+        selectedBrands = [];
+        maxPrice = 50000;
+        inStockOnly = false;
+        instockCheck.checked = false;
+        priceSlider.value = 50000;
+        priceSliderVal.textContent = 'Rs. 50,000';
+        if (makeSelect) makeSelect.value = '';
+        if (modelSelect) { modelSelect.innerHTML = '<option value="">All Models</option>'; modelSelect.disabled = true; }
+        catList.querySelector('input[value=""]').checked = true;
+        brandList.querySelectorAll('.brand-checkbox').forEach(cb => cb.checked = false);
+        window.history.replaceState({}, document.title, window.location.pathname);
+        filterAndRender();
+      }
+
+      clearBtn.addEventListener('click', resetFilters);
+      if (resetEmptyBtn) resetEmptyBtn.addEventListener('click', resetFilters);
+
+      // Core Filtering Function
+      function filterAndRender() {
+        let filtered = AUTO_HUB_DATA.products.filter(p => {
+          // Category
+          if (selectedCategory && p.category !== selectedCategory) return false;
+          // Make
+          if (selectedMake && p.make.toLowerCase() !== selectedMake.toLowerCase()) return false;
+          // Model
+          if (selectedModel && !p.model.toLowerCase().includes(selectedModel.toLowerCase())) return false;
+          // Search query
+          if (searchQuery) {
+            const q = searchQuery.toLowerCase();
+            const match = p.name.toLowerCase().includes(q) ||
+                          p.categoryName.toLowerCase().includes(q) ||
+                          p.brand.toLowerCase().includes(q) ||
+                          p.partNumber.toLowerCase().includes(q) ||
+                          p.description.toLowerCase().includes(q);
+            if (!match) return false;
+          }
+          // Brands
+          if (selectedBrands.length > 0 && !selectedBrands.includes(p.brand)) return false;
+          // Price
+          if (p.price > maxPrice) return false;
+          // In Stock
+          if (inStockOnly && !p.inStock) return false;
+          // Sale
+          if (isSaleOnly && !p.isOnSale) return false;
+
+          return true;
+        });
+
+        // Sorting
+        if (currentSort === 'price-asc') {
+          filtered.sort((a, b) => a.price - b.price);
+        } else if (currentSort === 'price-desc') {
+          filtered.sort((a, b) => b.price - a.price);
+        } else if (currentSort === 'rating') {
+          filtered.sort((a, b) => b.rating - a.rating);
+        } else if (currentSort === 'bestselling') {
+          filtered.sort((a, b) => (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0));
+        }
+
+        // Update counts
+        countText.textContent = filtered.length;
+
+        // Render Cards
+        if (filtered.length === 0) {
+          grid.style.display = 'none';
+          emptyState.style.display = 'block';
+        } else {
+          emptyState.style.display = 'none';
+          grid.style.display = 'grid';
+          grid.innerHTML = filtered.map(item => createProductCardHtml(item)).join('');
+          bindProductCardEvents(grid);
+        }
+      }
+
+      // Initial Filter Run
+      filterAndRender();
+    }
+  </script>
+</body>
+</html>
