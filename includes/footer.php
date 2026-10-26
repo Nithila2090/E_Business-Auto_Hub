@@ -124,21 +124,30 @@
 
     <div class="drawer-body">
       <div class="drawer-links">
-        <a href="index.php" class="drawer-link"><i class="fas fa-home"></i> Home</a>
-        <a href="products.php" class="drawer-link"><i class="fas fa-th-large"></i> Shop All Parts</a>
-        <a href="wishlist.php" class="drawer-link"><i class="fas fa-heart"></i> Wishlist</a>
-        <a href="cart.php" class="drawer-link"><i class="fas fa-shopping-cart"></i> Cart</a>
-        <a href="track-order.php" class="drawer-link"><i class="fas fa-truck"></i> Track Order</a>
-        <a href="about.php" class="drawer-link"><i class="fas fa-info-circle"></i> About Us</a>
-        <a href="contact.php" class="drawer-link"><i class="fas fa-envelope"></i> Contact Us</a>
+        <a href="index.php" class="drawer-link"><i class="fas fa-home"></i> <span>Home</span></a>
+        <a href="products.php" class="drawer-link"><i class="fas fa-th-large"></i> <span>Categories</span></a>
+        <a href="products.php" class="drawer-link"><i class="fas fa-car"></i> <span>Vehicles</span></a>
+        <a href="products.php" class="drawer-link"><i class="fas fa-shopping-bag"></i> <span>Shop</span></a>
+        <a href="about.php" class="drawer-link"><i class="fas fa-info-circle"></i> <span>About Us</span></a>
+        <a href="contact.php" class="drawer-link"><i class="fas fa-envelope"></i> <span>Contact Us</span></a>
+        <a href="track-order.php" class="drawer-link"><i class="fas fa-truck"></i> <span>Track Order</span></a>
+        <a href="contact.php" class="drawer-link"><i class="fas fa-headset"></i> <span>Help Center</span></a>
+
+        <div style="height: 1px; background: rgba(255, 255, 255, 0.08); margin: 0.5rem 0;"></div>
+
         <?php if (is_logged_in()): ?>
-          <a href="profile.php" class="drawer-link"><i class="fas fa-user-circle"></i> My Profile</a>
+          <a href="profile.php" class="drawer-link"><i class="fas fa-user-circle"></i> <span>My Profile</span></a>
+          <a href="profile.php?tab=orders" class="drawer-link"><i class="fas fa-box"></i> <span>My Orders</span></a>
+          <a href="wishlist.php" class="drawer-link"><i class="fas fa-heart"></i> <span>My Wishlist</span></a>
+          <a href="cart.php" class="drawer-link"><i class="fas fa-shopping-cart"></i> <span>My Cart</span></a>
           <?php if (is_admin()): ?>
-            <a href="admin/dashboard.php" class="drawer-link" style="color: #38bdf8;"><i class="fas fa-gauge-high"></i> Admin Dashboard</a>
+            <a href="admin/dashboard.php" class="drawer-link" style="color: #38bdf8;"><i class="fas fa-gauge-high"></i> <span>Admin Dashboard</span></a>
           <?php endif; ?>
-          <a href="logout.php" class="drawer-link" style="color: #ef4444;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          <a href="logout.php" class="drawer-link" style="color: #ef4444;"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
         <?php else: ?>
-          <a href="login.php" class="drawer-link" style="color: var(--primary-red);"><i class="fas fa-sign-in-alt"></i> Login / Register</a>
+          <a href="wishlist.php" class="drawer-link"><i class="fas fa-heart"></i> <span>My Wishlist</span></a>
+          <a href="cart.php" class="drawer-link"><i class="fas fa-shopping-cart"></i> <span>My Cart</span></a>
+          <a href="login.php" class="drawer-link" style="color: var(--primary-red);"><i class="fas fa-sign-in-alt"></i> <span>Login / Register</span></a>
         <?php endif; ?>
       </div>
     </div>
@@ -164,25 +173,6 @@
   <script src="js/data.js"></script>
   <script src="js/store.js"></script>
   <script src="js/script.js"></script>
-
-  <script>
-    // Header user dropdown toggle
-    document.addEventListener('DOMContentLoaded', () => {
-      const userToggle = document.querySelector('.user-dropdown-toggle');
-      const userMenu = document.querySelector('.user-menu-dropdown');
-      if (userToggle && userMenu) {
-        userToggle.addEventListener('click', (e) => {
-          e.preventDefault();
-          userMenu.style.display = userMenu.style.display === 'block' ? 'none' : 'block';
-        });
-        document.addEventListener('click', (e) => {
-          if (!userToggle.contains(e.target) && !userMenu.contains(e.target)) {
-            userMenu.style.display = 'none';
-          }
-        });
-      }
-    });
-  </script>
 
 </body>
 </html>

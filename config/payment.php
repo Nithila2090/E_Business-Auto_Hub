@@ -225,3 +225,65 @@ function get_payhere_diagnostics(): array {
         'warnings'             => $warnings,
     ];
 }
+
+/**
+ * Safe Non-Sensitive PayHere Event Logger
+ * Records payment lifecycle events safely into logs/payment_events.log without exposing secrets.
+ *
+ * @param string $event Event identifier (e.g. PAYMENT_REQUEST_RENDERED, PAYHERE_NOTIFY_CALLBACK)
+ * @param array $context Contextual details (order_id, amount, status_code, etc.)
+ * @return bool True if logged successfully, false otherwise
+ */
+if (!function_exists('log_payhere_event')) {
+    function log_payhere_event(string $event, array $context = []): bool {
+        try {
+            $logDir = __DIR__ . '/../logs';
+            if (!is_dir($logDir)) {
+                if (!@mkdir($logDir, 0755, true) && !is_dir($logDir)) {
+                    return false;
+                }
+            }
+
+            // Sensitive key redaction to guarantee security compliance
+            $sensitiveKeys = [
+                'merchant_secret', 'secret', 'password', 'card_number', 'card_no', 
+                'cvv', 'cvv2', 'pin', 'token', 'auth_token'
+            ];
+
+            $sanitizedContext = [];
+            foreach ($context as $key => $value) {
+                $keyLower = strtolower((string)$key);
+                if (in_array($keyLower, $sensitiveKeys, true)) {
+                    $sanitizedContext[$key] = '***REDACTED***';
+                } elseif (is_array($value)) {
+                    $subSanitized = [];
+                    foreach ($value as $k => $v) {
+                        if (in_array(strtolower((string)$k), $sensitiveKeys, true)) {
+                            $subSanitized[$k] = '***REDACTED***';
+                        } else {
+                            $subSanitized[$k] = is_scalar($v) || $v === null ? $v : (string)$v;
+                        }
+                    }
+                    $sanitizedContext[$key] = $subSanitized;
+                } else {
+                    $sanitizedContext[$key] = is_scalar($value) || $value === null ? $value : (string)$value;
+                }
+            }
+
+            $entry = array_merge([
+                'timestamp' => date('Y-m-d H:i:s'),
+                'event'     => $event,
+                'client_ip' => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1'
+            ], $sanitizedContext);
+
+            $logFile = $logDir . '/payment_events.log';
+            $json = json_encode($entry, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+            return @file_put_contents($logFile, $json . "\n", FILE_APPEND) !== false;
+        } catch (\Throwable $e) {
+            // Defensive logging: Never crash checkout on log write issues
+            error_log('PayHere log_payhere_event notice: ' . $e->getMessage());
+            return false;
+        }
+    }
+}
+

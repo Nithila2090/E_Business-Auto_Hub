@@ -337,26 +337,30 @@ ul {
   font-size: 0.82rem;
   padding: 0.5rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 1050;
 }
 
 .top-header .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .top-header-left, .top-header-right {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .top-header a {
   color: #cbd5e1;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  transition: var(--transition-fast);
+  gap: 0.45rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
 }
 
 .top-header a:hover {
@@ -366,13 +370,174 @@ ul {
 .top-header a i {
   color: var(--primary-red);
   font-size: 0.85rem;
+  transition: transform var(--transition-fast);
+}
+
+.top-header a:hover i {
+  transform: translateY(-1px);
 }
 
 .top-header-divider {
   display: inline-block;
   width: 1px;
-  height: 12px;
-  background-color: rgba(255, 255, 255, 0.2);
+  height: 14px;
+  background-color: rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+}
+
+/* User Profile Dropdown in Top Header */
+.user-dropdown-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.user-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #f8fafc;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  user-select: none;
+}
+
+.user-dropdown-toggle:hover,
+.user-dropdown-wrapper.open .user-dropdown-toggle {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.user-dropdown-toggle .user-name {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-dropdown-toggle .badge-admin {
+  background: var(--primary-red);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.top-header-avatar-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--primary-red);
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.top-header a i.dropdown-arrow,
+.user-dropdown-toggle .dropdown-arrow {
+  color: #94a3b8;
+  font-size: 0.7rem;
+  margin-left: 0.15rem;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+}
+
+.user-dropdown-toggle:hover .dropdown-arrow {
+  color: #ffffff;
+}
+
+.user-dropdown-wrapper.open .dropdown-arrow {
+  transform: rotate(180deg);
+  color: var(--primary-red);
+}
+
+.user-menu-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 4px 10px rgba(0, 0, 0, 0.3);
+  min-width: 200px;
+  z-index: 2000;
+  padding: 0.4rem 0;
+}
+
+.user-menu-dropdown.show {
+  display: block !important;
+  animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-menu-dropdown .user-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 1rem;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
+}
+
+.user-menu-dropdown .user-dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  padding-left: 1.2rem;
+}
+
+.user-menu-dropdown .user-dropdown-item i {
+  color: var(--primary-red);
+  font-size: 0.85rem;
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.user-menu-dropdown .user-dropdown-item.admin-link i {
+  color: #38bdf8;
+}
+
+.user-menu-dropdown .user-dropdown-item.admin-link:hover {
+  color: #38bdf8;
+}
+
+.user-menu-dropdown .user-dropdown-item.logout-link {
+  color: #ef4444;
+}
+
+.user-menu-dropdown .user-dropdown-item.logout-link i {
+  color: #ef4444;
+}
+
+.user-menu-dropdown .user-dropdown-item.logout-link:hover {
+  background-color: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+}
+
+.user-dropdown-divider {
+  border-top: 1px solid #1e293b;
+  margin: 0.35rem 0;
 }
 
 /* ==========================================================================

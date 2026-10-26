@@ -243,6 +243,11 @@ class PaymentService {
      * Safe non-sensitive event logger
      */
     protected function logPaymentEvent(string $event, array $context = []): void {
+        if (function_exists('log_payhere_event')) {
+            log_payhere_event($event, $context);
+            return;
+        }
+
         $logDir = __DIR__ . '/../../logs';
         if (!is_dir($logDir)) {
             @mkdir($logDir, 0777, true);

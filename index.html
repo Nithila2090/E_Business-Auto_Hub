@@ -33,17 +33,22 @@
        ========================================================================= -->
   <header class="top-header">
     <div class="container">
-      <div class="top-header-left">
-        <a href="tel:0707275599"><i class="fas fa-phone-alt"></i> 070 727 5599</a>
-        <span class="top-header-divider"></span>
-        <a href="mailto:nithilarodrigo@gmail.com"><i class="fas fa-envelope"></i> nithilarodrigo@gmail.com</a>
-      </div>
       <div class="top-header-right">
         <a href="track-order.html"><i class="fas fa-truck"></i> Track Order</a>
         <span class="top-header-divider"></span>
         <a href="contact.html"><i class="fas fa-headset"></i> Help Center</a>
         <span class="top-header-divider"></span>
-        <a href="login.html"><i class="fas fa-user"></i> Login / Register</a>
+        <div class="user-dropdown-wrapper">
+          <a href="login.html" class="user-dropdown-toggle" id="guest-profile-toggle" role="button" aria-expanded="false" aria-haspopup="true">
+            <i class="fas fa-user"></i> 
+            <span class="user-name">Login / Register</span>
+            <i class="fas fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <div class="user-menu-dropdown" id="guest-profile-menu">
+            <a href="login.html" class="user-dropdown-item"><i class="fas fa-sign-in-alt"></i> <span>Login</span></a>
+            <a href="register.html" class="user-dropdown-item"><i class="fas fa-user-plus"></i> <span>Register</span></a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -56,7 +61,7 @@
       <div class="navbar-inner">
 
         <!-- Mobile Menu Toggle Button -->
-        <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <button type="button" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
           <i class="fas fa-bars"></i>
         </button>
 
@@ -612,27 +617,20 @@
       </form>
 
       <div class="drawer-links">
-        <a href="index.html" class="drawer-link active">Home <i class="fas fa-chevron-right"></i></a>
-        <a href="shop.html" class="drawer-link">Shop All Parts <i class="fas fa-chevron-right"></i></a>
-        <a href="category.html?id=brake-system" class="drawer-link">Brake System <i
-            class="fas fa-chevron-right"></i></a>
-        <a href="category.html?id=filters" class="drawer-link">Filters <i class="fas fa-chevron-right"></i></a>
-        <a href="category.html?id=electrical" class="drawer-link">Electrical &amp; Batteries <i
-            class="fas fa-chevron-right"></i></a>
-        <a href="category.html?id=cooling-system" class="drawer-link">Cooling &amp; Radiators <i
-            class="fas fa-chevron-right"></i></a>
-        <a href="category.html?id=engine-parts" class="drawer-link">Engine Parts <i
-            class="fas fa-chevron-right"></i></a>
-        <a href="category.html?id=body-parts" class="drawer-link">Body &amp; Suspension <i
-            class="fas fa-chevron-right"></i></a>
-        <a href="wishlist.html" class="drawer-link">Wishlist <span class="badge badge-discount wishlist-badge-count"
-            style="display:none;">0</span></a>
-        <a href="cart.html" class="drawer-link">Cart <span class="badge badge-discount cart-badge-count"
-            style="display:none;">0</span></a>
-        <a href="track-order.html" class="drawer-link">Track Order <i class="fas fa-chevron-right"></i></a>
-        <a href="about.html" class="drawer-link">About Us <i class="fas fa-chevron-right"></i></a>
-        <a href="contact.html" class="drawer-link">Contact Us <i class="fas fa-chevron-right"></i></a>
-        <a href="login.html" class="drawer-link">Login / Register <i class="fas fa-chevron-right"></i></a>
+        <a href="index.html" class="drawer-link active"><i class="fas fa-home"></i> <span>Home</span></a>
+        <a href="category.html" class="drawer-link"><i class="fas fa-th-large"></i> <span>Categories</span></a>
+        <a href="shop.html" class="drawer-link"><i class="fas fa-car"></i> <span>Vehicles</span></a>
+        <a href="shop.html" class="drawer-link"><i class="fas fa-shopping-bag"></i> <span>Shop</span></a>
+        <a href="about.html" class="drawer-link"><i class="fas fa-info-circle"></i> <span>About Us</span></a>
+        <a href="contact.html" class="drawer-link"><i class="fas fa-envelope"></i> <span>Contact Us</span></a>
+        <a href="track-order.html" class="drawer-link"><i class="fas fa-truck"></i> <span>Track Order</span></a>
+        <a href="contact.html" class="drawer-link"><i class="fas fa-headset"></i> <span>Help Center</span></a>
+
+        <div style="height: 1px; background: rgba(255, 255, 255, 0.08); margin: 0.5rem 0;"></div>
+
+        <a href="wishlist.html" class="drawer-link"><i class="fas fa-heart"></i> <span>Wishlist</span></a>
+        <a href="cart.html" class="drawer-link"><i class="fas fa-shopping-cart"></i> <span>Cart</span></a>
+        <a href="login.html" class="drawer-link" style="color: var(--primary-red);"><i class="fas fa-sign-in-alt"></i> <span>Login / Register</span></a>
       </div>
     </div>
 

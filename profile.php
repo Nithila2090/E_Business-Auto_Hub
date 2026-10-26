@@ -83,8 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ");
                     $stmtUpd->execute([$fullName, $phone, $address, $city, $postalCode, $province, $profileImage, $userId]);
 
-                    // Refresh session user name so navbar reflects change immediately
+                    // Refresh session user name and avatar so navbar reflects change immediately
                     $_SESSION['user_name'] = $fullName;
+                    $_SESSION['profile_image'] = $profileImage;
                     $msg = 'Your profile details have been successfully updated!';
                     $activeTab = 'view';
 

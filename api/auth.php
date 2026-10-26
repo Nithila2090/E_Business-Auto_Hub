@@ -143,6 +143,63 @@ try {
         json_response(['success' => true, 'message' => 'Logged out successfully', 'redirect' => 'login.php']);
     }
 
+    // 5. Create Admin Account (Strictly restricted to authenticated administrators)
+    if ($action === 'create_admin' || $action === 'add_admin') {
+        if (!is_admin()) {
+            json_response(['success' => false, 'message' => 'Access denied: Administrator privileges required.'], 403);
+        }
+
+        $fullName        = trim($input['full_name'] ?? $input['name'] ?? '');
+        $email           = strtolower(trim($input['email'] ?? ''));
+        $phone           = trim($input['phone'] ?? '');
+        $password        = $input['password'] ?? '';
+        $confirmPassword = $input['confirm_password'] ?? '';
+
+        if (empty($fullName) || empty($email) || empty($password)) {
+            json_response(['success' => false, 'message' => 'All required fields (Full Name, Email, Password) must be filled.'], 400);
+        }
+
+        if (strlen($fullName) < 2 || strlen($fullName) > 100) {
+            json_response(['success' => false, 'message' => 'Full name must be between 2 and 100 characters.'], 400);
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            json_response(['success' => false, 'message' => 'Please enter a valid email address.'], 400);
+        }
+
+        if (strlen($password) < 6) {
+            json_response(['success' => false, 'message' => 'Password must be at least 6 characters long.'], 400);
+        }
+
+        if (!empty($confirmPassword) && $password !== $confirmPassword) {
+            json_response(['success' => false, 'message' => 'Passwords do not match.'], 400);
+        }
+
+        // Check if email already exists
+        $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ? LIMIT 1");
+        $stmt->execute([$email]);
+        if ($stmt->fetch()) {
+            json_response(['success' => false, 'message' => 'An account with this email address already exists.'], 400);
+        }
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $pdo->prepare("INSERT INTO users (full_name, email, phone, password, role, created_at) VALUES (?, ?, ?, ?, 'admin', NOW())");
+        $stmt->execute([$fullName, $email, $phone ?: null, $hashedPassword]);
+        $newAdminId = (int)$pdo->lastInsertId();
+
+        json_response([
+            'success' => true,
+            'message' => "Administrator account for <strong>" . e($fullName) . "</strong> created successfully.",
+            'user' => [
+                'id' => $newAdminId,
+                'full_name' => $fullName,
+                'email' => $email,
+                'phone' => $phone,
+                'role' => 'admin'
+            ]
+        ]);
+    }
+
     json_response(['success' => false, 'message' => 'Invalid action'], 400);
 
 } catch (Exception $e) {

@@ -230,6 +230,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   `token_hash` VARCHAR(64) NOT NULL,
   `expires_at` DATETIME NOT NULL,
   `used` TINYINT(1) DEFAULT 0,
+  `attempts` TINYINT DEFAULT 0,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   INDEX (`token_hash`),
   FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE

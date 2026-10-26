@@ -14,8 +14,14 @@ $isValidToken = false;
 $user = null;
 $resetRecord = null;
 
-if (empty($token) || strlen($token) !== 64 || !ctype_xdigit($token)) {
-    $error = 'Invalid or missing password reset token. Please check the link in your email or request a new one.';
+if (empty($token)) {
+    // Default to the main OTP recovery page
+    header('Location: forgot-password.php');
+    exit;
+}
+
+if (strlen($token) !== 64 || !ctype_xdigit($token)) {
+    $error = 'Invalid password reset token. Please request a fresh 6-digit OTP code.';
 } else {
     $tokenHash = hash('sha256', $token);
     $stmt = $pdo->prepare("

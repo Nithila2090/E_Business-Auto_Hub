@@ -35,20 +35,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->fetch()) {
             $error = 'An account with this email already exists. Please sign in instead.';
         } else {
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $pdo->prepare("INSERT INTO users (full_name, email, phone, password, role) VALUES (?, ?, ?, ?, 'customer')");
-            $stmt->execute([$fullName, $email, $phone, $hashedPassword]);
-            $newId = (int)$pdo->lastInsertId();
+            // Process optional profile photo upload
+            $profilePhotoPath = null;
+            if (!empty($_FILES['profile_photo']['name'])) {
+                $uploadRes = handle_profile_photo_upload($_FILES['profile_photo']);
+                if (!$uploadRes['success']) {
+                    $error = $uploadRes['error'];
+                } else {
+                    $profilePhotoPath = $uploadRes['file_path'];
+                }
+            }
 
-            $_SESSION['user_id'] = $newId;
-            $_SESSION['user_name'] = $fullName;
-            $_SESSION['user_email'] = $email;
-            $_SESSION['role'] = 'customer';
+            if (empty($error)) {
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                $stmt = $pdo->prepare("INSERT INTO users (full_name, email, phone, password, role, profile_image) VALUES (?, ?, ?, ?, 'customer', ?)");
+                $stmt->execute([$fullName, $email, $phone, $hashedPassword, $profilePhotoPath]);
+                $newId = (int)$pdo->lastInsertId();
 
-            sync_guest_cart_to_user($newId);
+                $_SESSION['user_id'] = $newId;
+                $_SESSION['user_name'] = $fullName;
+                $_SESSION['user_email'] = $email;
+                $_SESSION['role'] = 'customer';
+                $_SESSION['profile_image'] = $profilePhotoPath;
 
-            header('Location: index.php');
-            exit;
+                sync_guest_cart_to_user($newId);
+
+                header('Location: index.php');
+                exit;
+            }
         }
     }
 }
@@ -77,8 +91,41 @@ require_once __DIR__ . '/includes/header.php';
         </div>
       <?php endif; ?>
 
-      <form id="register-form" action="register.php" method="POST" class="auth-form">
+      <form id="register-form" action="register.php" method="POST" enctype="multipart/form-data" class="auth-form">
         
+        <!-- Profile Photo Upload Field -->
+        <div class="form-group profile-upload-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-weight: 600;">Profile Photo</span>
+            <span style="font-size: 0.78rem; font-weight: 500; color: #94a3b8;">Optional</span>
+          </label>
+          <div class="photo-upload-container" style="background: #f8fafc; border: 1.5px dashed #cbd5e1; border-radius: 12px; padding: 1rem 1.25rem; transition: border-color var(--transition-fast);">
+            <!-- Circular Avatar Preview Box -->
+            <div class="photo-preview-box" id="reg-avatar-preview-box" role="button" tabindex="0" title="Click to choose profile photo" style="width: 76px; height: 76px; border-radius: 50%; border: 2px solid var(--border-color); overflow: hidden; background: #e2e8f0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; position: relative;">
+              <div id="reg-avatar-fallback" class="photo-preview-fallback" style="font-size: 2.4rem; color: #94a3b8; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                <i class="fas fa-user"></i>
+              </div>
+              <img src="" alt="Profile Preview" id="reg-avatar-img" class="photo-preview-img" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <!-- Controls & Instructions -->
+            <div class="photo-upload-controls" style="flex: 1; min-width: 0;">
+              <input type="file" name="profile_photo" id="reg-profile-photo" accept="image/jpeg,image/png,image/webp" style="display: none;">
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+                <button type="button" class="btn btn-outline-dark btn-sm" id="btn-browse-photo" style="font-size: 0.82rem; padding: 0.4rem 0.85rem; border-radius: 6px;">
+                  <i class="fas fa-camera"></i> <span id="btn-browse-text">Choose Photo</span>
+                </button>
+                <button type="button" class="btn btn-sm" id="btn-remove-photo" style="display: none; font-size: 0.82rem; padding: 0.4rem 0.85rem; border-radius: 6px; color: #e11d48; border: 1px solid #fecdd3; background: #fff5f5;">
+                  <i class="fas fa-trash-alt"></i> Remove
+                </button>
+              </div>
+              <p class="upload-help-text" style="font-size: 0.75rem; color: #64748b; margin: 0.4rem 0 0; line-height: 1.4;">
+                <i class="fas fa-info-circle"></i> Supported: <strong>JPG, PNG, WEBP</strong> (Max 2MB).
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="form-label" for="reg-name">Full Name <span class="text-red">*</span></label>
           <div class="auth-input-wrap">
@@ -137,5 +184,76 @@ require_once __DIR__ . '/includes/header.php';
       </div>
     </div>
   </main>
+
+  <!-- Interactive Profile Photo Preview & Reset Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const fileInput = document.getElementById('reg-profile-photo');
+      const btnBrowse = document.getElementById('btn-browse-photo');
+      const btnBrowseText = document.getElementById('btn-browse-text');
+      const btnRemove = document.getElementById('btn-remove-photo');
+      const previewImg = document.getElementById('reg-avatar-img');
+      const previewFallback = document.getElementById('reg-avatar-fallback');
+      const previewBox = document.getElementById('reg-avatar-preview-box');
+
+      if (!fileInput || !btnBrowse) return;
+
+      // Click button or preview circle to open file dialog
+      btnBrowse.addEventListener('click', () => fileInput.click());
+      previewBox.addEventListener('click', () => fileInput.click());
+      previewBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          fileInput.click();
+        }
+      });
+
+      // Handle file selection
+      fileInput.addEventListener('change', () => {
+        const file = fileInput.files && fileInput.files[0];
+        if (!file) return;
+
+        // Client-side validations
+        const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        if (!validTypes.includes(file.type)) {
+          alert('Please select a valid image file (JPG, PNG, or WEBP).');
+          resetProfilePhoto();
+          return;
+        }
+
+        const maxSizeBytes = 2 * 1024 * 1024; // 2MB
+        if (file.size > maxSizeBytes) {
+          alert('The selected image is larger than 2MB. Please choose a smaller image.');
+          resetProfilePhoto();
+          return;
+        }
+
+        // Live image preview
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImg.src = e.target.result;
+          previewImg.style.display = 'block';
+          previewFallback.style.display = 'none';
+          btnBrowseText.textContent = 'Change Photo';
+          btnRemove.style.display = 'inline-flex';
+        };
+        reader.readAsDataURL(file);
+      });
+
+      // Remove photo button
+      btnRemove.addEventListener('click', () => {
+        resetProfilePhoto();
+      });
+
+      function resetProfilePhoto() {
+        fileInput.value = '';
+        previewImg.src = '';
+        previewImg.style.display = 'none';
+        previewFallback.style.display = 'flex';
+        btnBrowseText.textContent = 'Choose Photo';
+        btnRemove.style.display = 'none';
+      }
+    });
+  </script>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

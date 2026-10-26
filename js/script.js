@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileDrawer();
   initBackToTop();
   initQuickViewModal();
+  initHeaderUserDropdown();
 });
 
 /* ==========================================================================
@@ -502,28 +503,100 @@ function initCountdownTimer() {
    8. Mobile Drawer & Back to Top
    ========================================================================== */
 function initMobileDrawer() {
-  const menuBtn = document.querySelector('.mobile-menu-btn');
+  const menuBtns = document.querySelectorAll('.mobile-menu-btn');
   const drawer = document.getElementById('mobile-nav-drawer');
   const overlay = document.getElementById('mobile-nav-overlay');
   const closeBtn = document.getElementById('drawer-close-btn');
 
   if (!drawer || !overlay) return;
 
+  const updateMenuIcons = (isOpen) => {
+    menuBtns.forEach(btn => {
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      const icon = btn.querySelector('i');
+      if (icon) {
+        if (isOpen) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      }
+    });
+  };
+
   const openDrawer = () => {
-    drawer.classList.add('show');
-    overlay.classList.add('show');
+    drawer.classList.add('open', 'show');
+    overlay.classList.add('open', 'show');
     document.body.style.overflow = 'hidden';
+    updateMenuIcons(true);
   };
 
   const closeDrawer = () => {
-    drawer.classList.remove('show');
-    overlay.classList.remove('show');
+    drawer.classList.remove('open', 'show');
+    overlay.classList.remove('open', 'show');
     document.body.style.overflow = '';
+    updateMenuIcons(false);
   };
 
-  if (menuBtn) menuBtn.addEventListener('click', openDrawer);
-  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-  if (overlay) overlay.addEventListener('click', closeDrawer);
+  const toggleDrawer = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const isOpen = drawer.classList.contains('open') || drawer.classList.contains('show');
+    if (isOpen) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
+  };
+
+  menuBtns.forEach(btn => {
+    btn.addEventListener('click', toggleDrawer);
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeDrawer();
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeDrawer();
+    });
+  }
+
+  // Close when selecting any link inside the drawer
+  const drawerLinks = drawer.querySelectorAll('a, .drawer-link');
+  drawerLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeDrawer();
+    });
+  });
+
+  // Close with Escape key
+  document.addEventListener('keydown', (e) => {
+    if ((e.key === 'Escape' || e.key === 'Esc') && (drawer.classList.contains('open') || drawer.classList.contains('show'))) {
+      closeDrawer();
+    }
+  });
+
+  // Automatically close on resizing past tablet breakpoint (992px)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 992 && (drawer.classList.contains('open') || drawer.classList.contains('show'))) {
+      closeDrawer();
+    }
+  });
+
+  // Ensure drawer is never stuck open when returning via browser history
+  window.addEventListener('pageshow', () => {
+    closeDrawer();
+  });
 }
 
 function initBackToTop() {
@@ -548,4 +621,72 @@ function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
   return div.innerHTML;
+}
+
+/* ==========================================================================
+   Header User Dropdown Toggle
+   ========================================================================== */
+function initHeaderUserDropdown() {
+  const wrappers = document.querySelectorAll('.user-dropdown-wrapper');
+  if (!wrappers.length) return;
+
+  function closeAllDropdowns() {
+    wrappers.forEach(wrapper => {
+      wrapper.classList.remove('open');
+      const menu = wrapper.querySelector('.user-menu-dropdown');
+      const toggle = wrapper.querySelector('.user-dropdown-toggle');
+      if (menu) {
+        menu.classList.remove('show');
+        menu.style.display = 'none';
+      }
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  wrappers.forEach(wrapper => {
+    const toggle = wrapper.querySelector('.user-dropdown-toggle');
+    const menu = wrapper.querySelector('.user-menu-dropdown');
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const isOpen = wrapper.classList.contains('open') || menu.classList.contains('show');
+
+      // Close all dropdowns first
+      closeAllDropdowns();
+
+      // If it wasn't open before, open it now
+      if (!isOpen) {
+        wrapper.classList.add('open');
+        menu.classList.add('show');
+        menu.style.display = 'block';
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    // Prevent clicks inside the dropdown menu from closing the menu, unless a link was clicked
+    menu.addEventListener('click', (e) => {
+      if (e.target.closest('a')) {
+        closeAllDropdowns();
+        return; // Allow navigation
+      }
+      e.stopPropagation();
+    });
+  });
+
+  // Clicking outside any dropdown closes them
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.user-dropdown-wrapper')) {
+      closeAllDropdowns();
+    }
+  });
+
+  // Pressing Escape key closes any open dropdown
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      closeAllDropdowns();
+    }
+  });
 }

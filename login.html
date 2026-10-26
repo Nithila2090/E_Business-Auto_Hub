@@ -26,15 +26,22 @@
   <!-- Top Header -->
   <header class="top-header">
     <div class="container">
-      <div class="top-header-left">
-        <a href="tel:0707275599"><i class="fas fa-phone-alt"></i> 070 727 5599</a>
-        <span class="top-header-divider"></span>
-        <a href="mailto:nithilarodrigo@gmail.com"><i class="fas fa-envelope"></i> nithilarodrigo@gmail.com</a>
-      </div>
       <div class="top-header-right">
         <a href="track-order.html"><i class="fas fa-truck"></i> Track Order</a>
         <span class="top-header-divider"></span>
         <a href="contact.html"><i class="fas fa-headset"></i> Help Center</a>
+        <span class="top-header-divider"></span>
+        <div class="user-dropdown-wrapper">
+          <a href="login.html" class="user-dropdown-toggle" id="guest-profile-toggle" role="button" aria-expanded="false" aria-haspopup="true">
+            <i class="fas fa-user"></i> 
+            <span class="user-name">Login / Register</span>
+            <i class="fas fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <div class="user-menu-dropdown" id="guest-profile-menu">
+            <a href="login.html" class="user-dropdown-item"><i class="fas fa-sign-in-alt"></i> <span>Login</span></a>
+            <a href="register.html" class="user-dropdown-item"><i class="fas fa-user-plus"></i> <span>Register</span></a>
+          </div>
+        </div>
       </div>
     </div>
   </header>

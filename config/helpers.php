@@ -75,6 +75,10 @@ function current_user_role(): string {
     return $_SESSION['role'] ?? 'guest';
 }
 
+function current_user_profile_image(): ?string {
+    return $_SESSION['profile_image'] ?? null;
+}
+
 function require_login(string $redirect = 'login.php'): void {
     if (!is_logged_in()) {
         $_SESSION['flash_error'] = 'Please log in to continue.';
@@ -174,6 +178,85 @@ function handle_image_upload(array $file, string $subfolder = 'products'): array
     }
 
     return ['success' => false, 'error' => 'Failed to save uploaded file to destination directory.'];
+}
+
+/**
+ * Secure Profile Photo Upload Helper
+ * Handles avatar image uploads during registration and profile updates
+ * Max size: 2MB. Allowed formats: JPG, JPEG, PNG, WEBP.
+ *
+ * @param array|null $file The $_FILES['profile_photo'] or $_FILES['profile_image'] array
+ * @return array ['success' => bool, 'has_file' => bool, 'file_path' => string|null, 'error' => string|null]
+ */
+function handle_profile_photo_upload(?array $file): array {
+    if (!$file || !isset($file['error']) || $file['error'] === UPLOAD_ERR_NO_FILE) {
+        // No photo uploaded - valid since profile photo is optional
+        return ['success' => true, 'has_file' => false, 'file_path' => null, 'error' => null];
+    }
+
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        return ['success' => false, 'has_file' => true, 'file_path' => null, 'error' => 'File upload error occurred (Code: ' . (int)$file['error'] . ').'];
+    }
+
+    // Size limit: 2MB (2 * 1024 * 1024 = 2,097,152 bytes)
+    if ($file['size'] > 2 * 1024 * 1024) {
+        return ['success' => false, 'has_file' => true, 'file_path' => null, 'error' => 'Profile photo exceeds maximum limit of 2MB. Please choose a smaller image.'];
+    }
+
+    // Server-side MIME validation via finfo
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    $mime = $finfo->file($file['tmp_name']);
+    $allowed_mimes = [
+        'image/jpeg' => 'jpg',
+        'image/jpg'  => 'jpg',
+        'image/png'  => 'png',
+        'image/webp' => 'webp',
+    ];
+
+    if (!array_key_exists($mime, $allowed_mimes)) {
+        return ['success' => false, 'has_file' => true, 'file_path' => null, 'error' => 'Invalid image format. Only JPG, JPEG, PNG, and WEBP formats are allowed.'];
+    }
+
+    // Verify it is genuinely an image binary
+    $imageInfo = @getimagesize($file['tmp_name']);
+    if ($imageInfo === false) {
+        return ['success' => false, 'has_file' => true, 'file_path' => null, 'error' => 'The uploaded file is not a valid image.'];
+    }
+
+    // Derive safe extension from verified MIME type, never trusting user filename
+    $ext = $allowed_mimes[$mime];
+    $filename = 'profile_' . bin2hex(random_bytes(8)) . '_' . time() . '.' . $ext;
+
+    $targetDir = __DIR__ . '/../uploads/profile_photos/';
+    if (!is_dir($targetDir)) {
+        if (!mkdir($targetDir, 0755, true)) {
+            return ['success' => false, 'has_file' => true, 'file_path' => null, 'error' => 'Failed to create upload directory.'];
+        }
+    }
+
+    // Ensure uploads directory has script execution protection
+    $htaccessPath = __DIR__ . '/../uploads/.htaccess';
+    if (!file_exists($htaccessPath)) {
+        $htaccessContent = "# Prevent script execution in uploads directory\n<FilesMatch \"\.(php|phtml|php3|php4|php5|php7|phps|pl|py|cgi|sh|asp|aspx|exe)$\">\n    Require all denied\n</FilesMatch>\nOptions -ExecCGI -Indexes\n";
+        @file_put_contents($htaccessPath, $htaccessContent);
+    }
+
+    $targetPath = $targetDir . $filename;
+    $moved = is_uploaded_file($file['tmp_name']) 
+        ? move_uploaded_file($file['tmp_name'], $targetPath) 
+        : copy($file['tmp_name'], $targetPath);
+
+    if ($moved) {
+        return [
+            'success'   => true,
+            'has_file'  => true,
+            'file_path' => 'uploads/profile_photos/' . $filename,
+            'filename'  => $filename,
+            'error'     => null
+        ];
+    }
+
+    return ['success' => false, 'has_file' => true, 'file_path' => null, 'error' => 'Failed to save uploaded photo to destination directory.'];
 }
 
 /**

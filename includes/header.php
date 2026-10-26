@@ -54,40 +54,51 @@ $currentUser = $isLoggedIn ? [
        ========================================================================= -->
   <header class="top-header">
     <div class="container">
-      <div class="top-header-left">
-        <a href="tel:0707275599"><i class="fas fa-phone-alt"></i> 070 727 5599</a>
-        <span class="top-header-divider"></span>
-        <a href="mailto:nithilarodrigo@gmail.com"><i class="fas fa-envelope"></i> nithilarodrigo@gmail.com</a>
-      </div>
       <div class="top-header-right">
-        <a href="track-order.php"><i class="fas fa-truck"></i> Track Order</a>
+        <a href="track-order.php" class="top-header-link"><i class="fas fa-truck"></i> <span>Track Order</span></a>
         <span class="top-header-divider"></span>
-        <a href="contact.php"><i class="fas fa-headset"></i> Help Center</a>
+        <a href="contact.php" class="top-header-link"><i class="fas fa-headset"></i> <span>Help Center</span></a>
         <span class="top-header-divider"></span>
         <?php if ($isLoggedIn): ?>
-          <div class="user-dropdown-wrapper" style="position: relative; display: inline-block;">
-            <a href="profile.php" class="user-dropdown-toggle" style="display: inline-flex; align-items: center; gap: 0.4rem; color: #f8fafc; font-weight: 600;">
-              <i class="fas fa-user-circle text-red"></i> 
-              <span><?php echo e($currentUser['name']); ?></span>
-              <?php if (is_admin()): ?>
-                <span class="badge" style="background: var(--primary-red); color: white; font-size: 0.65rem; padding: 0.15rem 0.4rem; border-radius: 4px;">Admin</span>
+          <?php $navAvatar = current_user_profile_image(); ?>
+          <div class="user-dropdown-wrapper">
+            <a href="profile.php" class="user-dropdown-toggle" id="user-profile-toggle" role="button" aria-expanded="false" aria-haspopup="true">
+              <?php if (!empty($navAvatar) && file_exists(__DIR__ . '/../' . $navAvatar)): ?>
+                <img src="<?php echo e($navAvatar); ?>" alt="<?php echo e($currentUser['name']); ?>" class="top-header-avatar-thumb">
+              <?php else: ?>
+                <i class="fas fa-user-circle"></i>
               <?php endif; ?>
-              <i class="fas fa-chevron-down" style="font-size: 0.7rem; opacity: 0.8;"></i>
+              <span class="user-name"><?php echo e($currentUser['name']); ?></span>
+              <?php if (is_admin()): ?>
+                <span class="badge badge-admin">Admin</span>
+              <?php endif; ?>
+              <i class="fas fa-chevron-down dropdown-arrow"></i>
             </a>
-            <div class="user-menu-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: #0f172a; border: 1px solid #334155; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); min-width: 180px; z-index: 1000; padding: 0.5rem 0; margin-top: 0.5rem;">
-              <a href="profile.php" style="display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 1rem; color: #f8fafc; font-size: 0.85rem;"><i class="fas fa-user text-red"></i> My Profile</a>
-              <a href="profile.php#orders" style="display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 1rem; color: #f8fafc; font-size: 0.85rem;"><i class="fas fa-box text-red"></i> Order History</a>
-              <a href="wishlist.php" style="display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 1rem; color: #f8fafc; font-size: 0.85rem;"><i class="fas fa-heart text-red"></i> My Wishlist</a>
+            <div class="user-menu-dropdown" id="user-profile-menu">
               <?php if (is_admin()): ?>
-                <div style="border-top: 1px solid #334155; margin: 0.35rem 0;"></div>
-                <a href="admin/dashboard.php" style="display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 1rem; color: #38bdf8; font-size: 0.85rem;"><i class="fas fa-gauge-high"></i> Admin Panel</a>
+                <a href="admin/dashboard.php" class="user-dropdown-item admin-link"><i class="fas fa-gauge-high"></i> <span>Admin Panel</span></a>
+                <div class="user-dropdown-divider"></div>
               <?php endif; ?>
-              <div style="border-top: 1px solid #334155; margin: 0.35rem 0;"></div>
-              <a href="logout.php" style="display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 1rem; color: #ef4444; font-size: 0.85rem;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              <a href="profile.php" class="user-dropdown-item"><i class="fas fa-user"></i> <span>My Profile</span></a>
+              <a href="profile.php?tab=orders" class="user-dropdown-item"><i class="fas fa-box"></i> <span>My Orders</span></a>
+              <a href="wishlist.php" class="user-dropdown-item"><i class="fas fa-heart"></i> <span>My Wishlist</span></a>
+              <a href="profile.php?tab=edit" class="user-dropdown-item"><i class="fas fa-user-edit"></i> <span>Edit Profile</span></a>
+              <div class="user-dropdown-divider"></div>
+              <a href="logout.php" class="user-dropdown-item logout-link"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
             </div>
           </div>
         <?php else: ?>
-          <a href="login.php"><i class="fas fa-user"></i> Login / Register</a>
+          <div class="user-dropdown-wrapper">
+            <a href="login.php" class="user-dropdown-toggle" id="guest-profile-toggle" role="button" aria-expanded="false" aria-haspopup="true">
+              <i class="fas fa-user"></i> 
+              <span class="user-name">Login / Register</span>
+              <i class="fas fa-chevron-down dropdown-arrow"></i>
+            </a>
+            <div class="user-menu-dropdown" id="guest-profile-menu">
+              <a href="login.php" class="user-dropdown-item"><i class="fas fa-sign-in-alt"></i> <span>Login</span></a>
+              <a href="register.php" class="user-dropdown-item"><i class="fas fa-user-plus"></i> <span>Register</span></a>
+            </div>
+          </div>
         <?php endif; ?>
       </div>
     </div>
@@ -101,7 +112,7 @@ $currentUser = $isLoggedIn ? [
       <div class="navbar-inner">
         
         <!-- Mobile Menu Toggle Button -->
-        <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <button type="button" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
           <i class="fas fa-bars"></i>
         </button>
 

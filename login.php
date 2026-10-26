@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_name'] = $user['full_name'];
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['role'] = $user['role'];
+            $_SESSION['profile_image'] = $user['profile_image'] ?? null;
 
             // Sync guest cart to authenticated user
             sync_guest_cart_to_user($user['id']);
